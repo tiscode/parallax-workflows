@@ -1,6 +1,6 @@
 # Load House View
 
-**🔗 Live deck:** https://tiscode.github.io/parallax-workflows/workflows/
+**🔗 Live deck:** https://tiscode.github.io/parallax-workflows/load-house-view/
 
 Pitch deck for **Load House View** — the flagship workflow in the Chicago Global × Parallax investment-intelligence toolkit.
 
