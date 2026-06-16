@@ -1,0 +1,149 @@
+/* =============================================================================
+   "In Partnership with Parallax" — pitch deck styles
+   Palette per HANDOFF.md (deck-specific variant): deep navy + single cyan accent.
+   16:10 base (1280×800) to fit a MacBook Pro 16". No orange, no second accent.
+   ============================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
+
+:root {
+  /* grounds */
+  --bg-a: #0B1B3F;          /* radial inner */
+  --bg-b: #06122E;          /* radial outer */
+  --bg-deep: #040A1E;       /* cover / closing */
+  /* accent (single — cyan) */
+  --cy: #6FC3E8;
+  --cy-pale: #B8D4ED;
+  --cy-deep: #5A9CD8;
+  /* semantic (figures only) */
+  --pos: #2FD673;   /* vivid Bloomberg-style terminal green — pops on dark navy */
+  --neg: #E08585;
+  /* text */
+  --w: #F4F8FD;
+  --w-2: #C4D2E6;           /* secondary */
+  --w-3: #8295B4;           /* muted / meta */
+  --line: rgba(111,195,232,0.18);
+  --card: rgba(255,255,255,0.035);
+  --card-line: rgba(159,183,214,0.16);
+
+  --font-display: "Inter", system-ui, Arial, sans-serif;
+  --font-body: "Futura", "Jost", system-ui, Arial, sans-serif;
+}
+
+html, body { margin: 0; background: #02060f; }
+deck-stage:not(:defined) { visibility: hidden; }
+
+/* ---- Slide shell -------------------------------------------------------- */
+section {
+  box-sizing: border-box;
+  background: radial-gradient(120% 130% at 28% 12%, var(--bg-a) 0%, var(--bg-b) 60%, #050e24 100%);
+  color: var(--w);
+  font-family: var(--font-body);
+  padding: 78px 84px 72px;
+  overflow: hidden;
+}
+/* Main content slides (everything except the centered cover & thank-you):
+   drop the header down from the top so content sits more toward the middle. */
+section:not(.center) { padding-top: 112px; }
+section.deep { background: radial-gradient(120% 130% at 50% 18%, #0a1838 0%, var(--bg-deep) 70%); }
+
+/* ---- Stamps + footer ---------------------------------------------------- */
+.stamp { position: absolute; top: 40px; font-family: var(--font-display); font-weight: 600;
+  font-size: 12.5px; letter-spacing: .22em; color: var(--w-3); text-transform: uppercase; }
+.stamp.l { left: 84px; }
+img.stamp.l { height: 26px; width: auto; top: 34px; }
+img.stamp.l.cover-logo { height: 52px; top: 44px; }
+.stamp.r.cover-px { font-size: 23px; top: 58px; letter-spacing: .1em; }
+.stamp.r { right: 84px; color: var(--cy); display: flex; align-items: center; gap: 7px; }
+.stamp.r .dia { color: var(--cy); font-size: 11px; }
+.foot { position: absolute; left: 84px; right: 84px; bottom: 36px; display: flex;
+  justify-content: space-between; align-items: center;
+  font-family: var(--font-display); font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; }
+.foot .l { color: var(--w-3); }
+.foot .r { color: var(--cy); font-variant-numeric: tabular-nums; }
+
+/* ---- Type --------------------------------------------------------------- */
+.eyebrow { font-family: var(--font-display); font-weight: 600; font-size: 13px;
+  letter-spacing: .26em; text-transform: uppercase; color: var(--cy); }
+.title { font-family: var(--font-display); font-weight: 600; font-size: 40px; line-height: 1.08;
+  letter-spacing: -.015em; color: var(--w); margin: 16px 0 0; max-width: 1040px; }
+.title .cy { color: var(--cy); }
+.lede { font-size: 18px; line-height: 1.5; color: var(--w-2); margin: 16px 0 0; max-width: 940px;
+  font-family: var(--font-body); }
+.foot-note { font-size: 13px; color: var(--w-3); font-family: var(--font-body); }
+.num { font-variant-numeric: tabular-nums lining-nums; font-family: var(--font-display); }
+
+/* ---- Reusable blocks ---------------------------------------------------- */
+.node, .card, .col, .step, .metric { background: var(--card); border: 1px solid var(--card-line);
+  border-radius: 12px; }
+.node.cy, .step.cy { border-color: var(--cy); box-shadow: 0 0 0 1px rgba(111,195,232,.25) inset; }
+.kicker { font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--w-3); }
+.kicker.cy { color: var(--cy); }
+.h-card { font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--w); }
+.p-card { font-size: 14px; line-height: 1.5; color: var(--w-2); font-family: var(--font-body); }
+.arrow { color: var(--cy-deep); font-family: var(--font-display); font-weight: 600; flex: none; }
+
+/* big stats */
+.stat { font-family: var(--font-display); font-weight: 700; color: var(--cy); line-height: 1;
+  font-size: 78px; letter-spacing: -.02em; }
+.stat .u { font-size: 40px; color: var(--cy-deep); }
+.stat-label { font-size: 16px; color: var(--w-2); margin-top: 10px; font-family: var(--font-body); }
+
+/* bars (factor profile / generic) */
+.bar { height: 9px; border-radius: 99px; background: rgba(159,183,214,.12); overflow: hidden; display: block; }
+.bar > i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--cy-deep), var(--cy));
+  transform: scaleX(0); transform-origin: left center; }
+
+/* table */
+table.rt { width: 100%; border-collapse: collapse; font-family: var(--font-display); }
+table.rt th { text-align: left; font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--w-3); padding: 0 0 12px; }
+table.rt th.r, table.rt td.r { text-align: right; }
+table.rt td { padding: 11px 0; border-top: 1px solid var(--line); font-size: 16px; color: var(--w);
+  font-variant-numeric: tabular-nums; }
+table.rt td.lab { font-family: var(--font-body); color: var(--w-2); font-size: 15px; }
+.pos { color: var(--pos); } .neg { color: var(--neg); }
+.chip { display: inline-flex; flex-direction: column; gap: 3px; padding: 12px 16px; border-radius: 10px;
+  background: var(--card); border: 1px solid var(--card-line); }
+.chip b { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--w); font-variant-numeric: tabular-nums; }
+.chip span { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--w-3); font-family: var(--font-display); }
+
+.band { border-radius: 12px; border: 1px solid var(--line); background: rgba(111,195,232,.06);
+  padding: 18px 22px; display: flex; align-items: center; gap: 18px; }
+.band .bk { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--cy); flex: none; }
+.band .bt { font-size: 14px; color: var(--w-2); font-family: var(--font-body); line-height: 1.45; }
+
+/* cover meta */
+.meta { display: flex; gap: 28px; font-family: var(--font-display); font-size: 12px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--w-3); }
+.meta .d { color: var(--cy); }
+
+/* =============================================================================
+   ENTRANCE ANIMATIONS — base state = visible; animate FROM hidden, gated on
+   [data-deck-active] + reduced-motion. Replays each time a slide becomes active.
+   ============================================================================= */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes growX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes wipeL { from { opacity: 0; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+@keyframes popIn { from { opacity: 0; transform: scale(.86); } to { opacity: 1; transform: none; } }
+@keyframes lineDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-deck-active] .anim { animation: rise .55s cubic-bezier(.2,.7,.3,1) both; }
+  [data-deck-active] .wipe { animation: wipeL .6s cubic-bezier(.2,.7,.3,1) both; }
+  [data-deck-active] .pop  { animation: popIn .5s cubic-bezier(.2,.8,.3,1) both; }
+  [data-deck-active] .bar > i { animation: growX .8s .15s cubic-bezier(.2,.7,.3,1) both; }
+  [data-deck-active] .arrow.draw { animation: lineDraw .4s both; transform-origin: left center; }
+
+  /* stagger helpers */
+  .d1{animation-delay:.08s!important}.d2{animation-delay:.18s!important}.d3{animation-delay:.28s!important}
+  .d4{animation-delay:.38s!important}.d5{animation-delay:.48s!important}.d6{animation-delay:.58s!important}
+  .d7{animation-delay:.70s!important}.d8{animation-delay:.82s!important}.d9{animation-delay:.94s!important}
+  [data-deck-active] .bar.b1>i{animation-delay:.30s}[data-deck-active] .bar.b2>i{animation-delay:.42s}
+  [data-deck-active] .bar.b3>i{animation-delay:.54s}[data-deck-active] .bar.b4>i{animation-delay:.66s}
+  [data-deck-active] .bar.b5>i{animation-delay:.78s}[data-deck-active] .bar.b6>i{animation-delay:.90s}
+}
+/* print / reduced-motion: bars stay filled */
+@media (prefers-reduced-motion: reduce) { .bar > i { transform: scaleX(1) !important; } }
+@media print { .bar > i { transform: scaleX(1) !important; } }

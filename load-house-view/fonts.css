@@ -1,0 +1,86 @@
+/* =============================================================================
+   Chicago Global / Parallax — Web font substitutes
+   -----------------------------------------------------------------------------
+   The real brand fonts (Futura, Gill Sans, Optima, NorPath) are licensed/custom
+   and NOT on Google Fonts. This file loads the closest free substitutes so the
+   design system renders faithfully on the web. The real names are listed FIRST
+   in each --font-* stack in colors_and_type.css, so any machine with the licensed
+   fonts installed (or a production build that embeds them) uses the real thing
+   and never these substitutes.
+
+   SUBSTITUTION MAP  (flag to user — swap for licensed webfonts in production):
+     Futura      → Jost              geometric grotesque, the standard free Futura sub
+     Gill Sans   → Cabin             humanist sans in the Johnston/Eric-Gill lineage
+     Optima      → Carlito           Calibri-metric clone (brand's own Optima fallback
+                                      chain is Candara/Calibri); has tabular figures
+     NorPath     → (none)            Parallax wordmark is custom — NOT substituted.
+                                      Renders in Jost/Futura as a stand-in; flagged.
+     Instrument Serif → itself       real font, free on Google Fonts (newsletter only)
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Cabin:wght@400;500;600;700&family=Carlito:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+/* =============================================================================
+   LICENSED BRAND FONTS — upload slots
+   -----------------------------------------------------------------------------
+   These @font-face rules register the real brand families so the design-system
+   compiler knows they exist and prompts you to upload the licensed files. Until
+   a file is dropped in, each src below stays unresolved and the family's FALLBACK
+   stack (defined in colors_and_type.css — Jost / Cabin / Carlito, etc.) renders
+   in its place. Do NOT point these at a substitute family; the substitutes are
+   already the fallbacks. Drop the licensed .woff2 files at the paths below
+   (create a fonts/ folder) and they take over automatically.
+       Futura     → --font-head      (headings, eyebrows)
+       Gill Sans  → --font-body      (body, captions, buttons)
+       Optima     → --font-num       (tabular numerals)
+       NorPath    → --font-wordmark  (Parallax wordmark — custom, no substitute)
+   ============================================================================= */
+@font-face {
+  font-family: "Futura";
+  src: url("fonts/Futura.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Futura";
+  src: url("fonts/Futura-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gill Sans";
+  src: url("fonts/GillSans.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gill Sans";
+  src: url("fonts/GillSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Optima";
+  src: url("fonts/Optima.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Optima";
+  src: url("fonts/Optima-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "NorPath";
+  src: url("fonts/NorPath.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

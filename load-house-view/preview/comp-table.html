@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Financial table" subtitle="Navy header, striped rows, +/− semantic figures" viewport="700x210" --><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../fonts.css"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0}
+  .wrap{background:#fff;padding:20px 26px;font-family:var(--font-body)}
+  table{width:100%;border-collapse:collapse;border:1px solid #CCCDCF;border-radius:8px;overflow:hidden;font-size:13.5px}
+  thead th{background:#0C2746;color:#fff;font-weight:600;text-align:left;padding:9px 14px;font-size:13px}
+  thead th.r,tbody td.r{text-align:right}
+  tbody td{padding:9px 14px;color:#1F2937;border-top:1px solid #e7eaef}
+  tbody tr:nth-child(even){background:#EAEDF3}
+  .num{font-family:var(--font-num);font-variant-numeric:tabular-nums lining-nums}
+  .pos{color:#15803D;font-weight:600}.neg{color:#B91C1C;font-weight:600}
+  .tk{font-weight:600;color:#0C2746}
+</style></head><body>
+<div class="wrap">
+  <table>
+    <thead><tr><th>Ticker</th><th>Name</th><th class="r">Price</th><th class="r">Day</th><th class="r">Factor</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">AAPL</td><td>Apple Inc.</td><td class="r num">228.52</td><td class="r num pos">↑ +1.4%</td><td class="r num">8.6</td></tr>
+      <tr><td class="tk">MSFT</td><td>Microsoft</td><td class="r num">441.30</td><td class="r num pos">↑ +0.8%</td><td class="r num">9.1</td></tr>
+      <tr><td class="tk">TSLA</td><td>Tesla</td><td class="r num">242.10</td><td class="r num neg">↓ −3.1%</td><td class="r num">5.2</td></tr>
+    </tbody>
+  </table>
+</div>
+</body></html>

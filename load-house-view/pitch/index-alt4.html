@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Global × Parallax — In Partnership Pitch (Polaris · Suite motion)</title>
+<link rel="stylesheet" href="pitch.css">
+<style>
+  /* ===== Polaris / constellation decorative motif (no words) ===============
+     Hero star on cover & ending; subtle top-right constellation on content
+     slides. Sits BEHIND all text (deco z-index:0, content raised to z-index:1). */
+  .deco { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+  .deco.clip { inset: auto; top: 0; left: 0; width: 100%; height: 800px; }  /* full-slide star coords, clipped to the navy header */
+  .deco svg { width: 100%; height: 100%; display: block; }
+  @keyframes cg-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .18; } }
+  .deco circle.tw { animation: cg-twinkle 3s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .deco circle.tw { animation: none; } }
+  @media print { .deco circle.tw { animation: none; } }
+  /* keep every real element above the motif */
+  .stamp, .foot { z-index: 1; }
+  .eyebrow, .title, .lede, .foot-note, .meta, .flow, .cols3, .band, .rows,
+  .steps, .two, .statrow, .metrics4, .reasons, .cta, .legal, .chip, table,
+  .kicker, .stat, .stats3 { position: relative; z-index: 1; }
+
+  /* per-slide layout helpers */
+  .center { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+  .flow { display: flex; align-items: stretch; gap: 18px; margin-top: 58px; }
+  .flow .node { flex: 1; padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 10px; }
+  .flow .arrow { align-self: center; font-size: 26px; }
+  .cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 52px; }
+  .cols3 .col { padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .stats3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 64px; }
+  .stats3 > div { text-align: center; }
+  .stats3 .stat { font-size: 64px; }
+  .cico { color: var(--cy); display: block; margin-bottom: 8px; }
+  .cico svg { display: block; }
+  .ctext { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+  .cards4 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 46px; }
+  .cards4 .card { padding: 22px 24px; display: flex; flex-direction: row; align-items: center; gap: 18px; }
+  .cards4 .card .cico { margin-bottom: 0; flex: none; }
+  .steps { display: flex; align-items: stretch; gap: 12px; margin-top: 88px; }
+  .steps .step { flex: 1; padding: 28px 22px; display: flex; flex-direction: column; gap: 11px; min-height: 206px;
+    transition: border-color .45s ease, box-shadow .45s ease, background .45s ease; }
+  .steps .step .h-card { font-size: 18px !important; }
+  .steps .step .p-card { font-size: 14.5px; line-height: 1.5; }
+  /* Highlighted "illustrative sample" disclaimer flag — orange badge, reads on light & dark */
+  .foot .flag { background: var(--flag-bg, #ED7D31); color: var(--flag-fg, #fff); font-weight: 700; letter-spacing: .07em;
+    padding: 4px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.28); }
+  .foot .flag::before { content: "\26A0"; font-size: 12px; }
+  .foot .flag { margin: -4px 0; }   /* keep footer height (and page-no position) identical to other slides */
+  .foot .l .det { margin-left: 9px; }
+  .steps.cycle { position: relative; }
+  /* a single light line passes through ONE box at a time (top+bottom together), box 1 → 5, then loops */
+  .steps.cycle .step { position: relative; overflow: hidden; }
+  .steps.cycle .step .edge { position: absolute; left: 0; right: 0; height: 2px; pointer-events: none; z-index: 4; }
+  .steps.cycle .step .edge.top { top: 0; }
+  .steps.cycle .step .edge.bottom { bottom: 0; }
+  .steps.cycle .step .edge .seg { position: absolute; top: 50%; left: -55%; width: 55%; height: 2px; transform: translateY(-50%);
+    background: linear-gradient(90deg, transparent, rgba(140,210,240,.12) 16%, #CFEBFA 50%, rgba(140,210,240,.12) 84%, transparent);
+    filter: drop-shadow(0 0 6px rgba(111,195,232,.85)); opacity: 0; animation: cg-seq var(--cycle7, 6s) linear infinite; }
+  .steps.cycle .step .edge .seg.s2 { display: none; }   /* one travelling line, not two */
+  /* sequence: each box is lit for one fifth of the cycle, in order (delays scale with --cycle7) */
+  .steps.cycle .step:nth-of-type(1) .edge .seg { animation-delay: calc(var(--cycle7, 6s) * 0); }
+  .steps.cycle .step:nth-of-type(2) .edge .seg { animation-delay: calc(var(--cycle7, 6s) * 0.2); }
+  .steps.cycle .step:nth-of-type(3) .edge .seg { animation-delay: calc(var(--cycle7, 6s) * 0.4); }
+  .steps.cycle .step:nth-of-type(4) .edge .seg { animation-delay: calc(var(--cycle7, 6s) * 0.6); }
+  .steps.cycle .step:nth-of-type(5) .edge .seg { animation-delay: calc(var(--cycle7, 6s) * 0.8); }
+  @keyframes cg-seq {
+    0%     { left: -55%; opacity: 1; }
+    33%    { left: 100%; opacity: 1; }
+    33.01% { left: 100%; opacity: 0; }
+    100%   { left: 100%; opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .steps.cycle .step .edge .seg { animation: none; } }
+  @media print { .steps.cycle .step .edge .seg { animation: none; } }
+  /* slide 10 — periodic shooting star: lower-left → upper-right (straight line), tail trailing behind */
+  .shooter { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none;
+    animation: cg-shoot var(--star-speed, 7s) cubic-bezier(.4,0,.75,1) infinite; animation-delay: 3s; }
+  .shooter .glow { position: absolute; left: 0; top: 0; opacity: var(--star-alpha, .8); filter: brightness(var(--star-bright, 1)); }
+  .shooter .trail { position: absolute; right: 0; top: 0; width: 200px; height: 2px; border-radius: 2px;
+    transform-origin: right center; transform: rotate(var(--star-tail, -26deg));
+    background: linear-gradient(90deg, rgba(150,215,245,0) 0%, rgba(150,215,245,.28) 55%, rgba(205,235,250,.7) 86%, #FFFFFF 100%);
+    filter: drop-shadow(0 0 6px rgba(160,220,250,.9)); }
+  .shooter .head { position: absolute; right: -1px; top: -2px; width: 5px; height: 5px; border-radius: 50%;
+    background: #FFFFFF; box-shadow: 0 0 10px 3px rgba(170,225,252,.95), 0 0 4px 1px #fff; }
+  @keyframes cg-shoot {
+    0%   { transform: translate(-300px, 832px); opacity: 1; }
+    50%  { transform: translate(1592px, -84px); opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { transform: translate(1592px, -84px); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .shooter { display: none; } }
+  @media print { .shooter { display: none; } }
+  /* slide 11 — North Star (Polaris) at mid-right: soft halo + pinpoint core + faint diffraction spikes, gently pulsing brighter/dimmer */
+  .nova { position: absolute; right: 320px; top: 72%; transform: translateY(-50%); z-index: 0; pointer-events: none;
+    animation: cg-twinkle-star 5s ease-in-out infinite; }
+  .nova .halo { position: absolute; left: 50%; top: 50%; width: 120px; height: 120px; transform: translate(-50%,-50%);
+    border-radius: 50%; background: radial-gradient(circle, rgba(200,230,248,.32) 0%, rgba(140,205,235,.14) 38%, rgba(111,195,232,0) 72%);
+    filter: blur(1px); }
+  .nova .spike { position: absolute; left: 50%; top: 50%; background: linear-gradient(var(--d,90deg), rgba(214,238,250,0), rgba(214,238,250,.7) 50%, rgba(214,238,250,0)); }
+  .nova .spike.h { width: 116px; height: 1px; transform: translate(-50%,-50%); }
+  .nova .spike.v { width: 1px; height: 84px; transform: translate(-50%,-50%); }
+  .nova .point { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; transform: translate(-50%,-50%);
+    border-radius: 50%; background: radial-gradient(circle, #FFFFFF 0%, #EAF6FC 45%, rgba(170,215,242,.6) 75%, rgba(170,215,242,0) 100%); }
+  @keyframes cg-twinkle-star { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .nova { animation: none; opacity: .75; } }
+  .steps .arrow { align-self: center; font-size: 20px; }
+  .stepno { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--cy); letter-spacing: .1em; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 46px; }
+  /* uniform row height so the hairlines in both lists sit on the same grid (parallel) */
+  .two .role { padding: 0; min-height: 84px; box-sizing: border-box; display: flex;
+    flex-direction: column; justify-content: center; gap: 4px; border-top: 1px solid var(--line); }
+  .role { padding: 14px 0; border-top: 1px solid var(--line); }
+  .role:first-child { border-top: 0; }
+  /* Known-limits: compact bulleted card (rounded), no hairlines */
+  .limbox { background: var(--card); border: 1px solid var(--card-line); border-radius: 12px;
+    padding: 20px 24px; display: flex; flex-direction: column; gap: 6px; }
+  .limbox .lim { display: flex; gap: 11px; align-items: flex-start; padding: 7px 0; border: 0; }
+  .limbox .lim .dot { color: var(--cy); flex: none; font-weight: 700; line-height: 1.5; }
+  /* slow light that travels around the edges of the known-limits box */
+  @property --cg-ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+  .limbox { position: relative; isolation: isolate; }
+  .limbox::after {
+    content: ""; position: absolute; inset: -1px; border-radius: 13px; padding: 1.6px; pointer-events: none;
+    background: conic-gradient(from var(--cg-ang),
+      rgba(111,195,232,0) 0deg, rgba(111,195,232,0) 285deg,
+      rgba(111,195,232,.85) 330deg, #EAF6FC 350deg, rgba(111,195,232,0) 360deg);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: cg-orbit 7s linear infinite;
+  }
+  @keyframes cg-orbit { to { --cg-ang: 360deg; } }
+  @media (prefers-reduced-motion: reduce) { .limbox::after { animation: none; } }
+  @media print { .limbox::after { animation: none; } }
+  .lim { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; }
+  .lim .dot { color: var(--cy); flex: none; }
+  .metrics4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 72px; }
+  .metric { padding: 20px 18px; }
+  .metric .mv { font-family: var(--font-display); font-weight: 700; font-size: 36px; color: var(--cy); letter-spacing: -.02em; }
+  .reasons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; max-width: 980px; }
+  .reasons .card { padding: 20px 22px; display: flex; flex-direction: row; align-items: center; gap: 16px; }
+  .reasons .card .cico { margin-bottom: 0; flex: none; }
+  .cta { display: flex; align-items: baseline; gap: 26px; margin-top: 30px; }
+  .cta .go { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--w); }
+  .cta .url { color: var(--cy); font-family: var(--font-display); font-size: 15px; letter-spacing: .04em; }
+  .cta .tag { margin-left: auto; font-style: italic; color: var(--cy); font-size: 26px; font-family: var(--font-display); }
+  .legal { position: absolute; left: 84px; bottom: 56px; right: 84px; font-size: 11px; color: var(--w-3);
+    font-family: var(--font-body); line-height: 1.5; }
+
+  /* ===== Light-background variant (slides 4–6): redefine the slide's color
+     tokens so every var()-driven element flips to dark-on-white automatically. */
+  section.light {
+    background: radial-gradient(120% 130% at 28% 12%, #ffffff 0%, #eef2f8 100%);
+    --w: #0C2746;      /* headings, card titles, table values → navy */
+    --w-2: #374151;    /* body / subhead → ink */
+    --w-3: #6B7280;    /* muted / meta / labels */
+    --cy: #2563EB;     /* accent → strong blue (cyan fails on white) */
+    --cy-deep: #1D4ED8;
+    --cy-pale: #1E3A8A;
+    --pos: #15803D;    /* gains → brand success */
+    --neg: #B91C1C;    /* losses → brand error */
+    --line: #E4E9F1;
+    --card: #FFFFFF;
+    --card-line: #DBE1EA;
+  }
+  section.light .node, section.light .card, section.light .col,
+  section.light .step, section.light .metric, section.light .chip {
+    box-shadow: 0 1px 3px rgba(12,39,70,.07), 0 1px 2px rgba(12,39,70,.04);
+  }
+  section.light .band { background: #EEF4FD; border-color: #D6E2F5; }
+  section.light .bar { background: #E3E8F0; }
+
+  /* ===== Split variant: dark navy header band on top, white content below (slides 4–6) ===== */
+  section.splitlight {
+    background: #ffffff; padding: 0 0 72px;
+    --w: #0C2746; --w-2: #374151; --w-3: #6B7280;
+    --cy: #2563EB; --cy-deep: #1D4ED8; --cy-pale: #1E3A8A;
+    --pos: #15803D; --neg: #B91C1C; --line: #E4E9F1; --card: #FFFFFF; --card-line: #DBE1EA;
+  }
+  section.splitlight .hdr {
+    position: relative; overflow: hidden;
+    background: radial-gradient(130% 240% at 26% -70%, #0B1B3F 0%, #06122E 72%);
+    padding: 104px 84px 40px;
+    min-height: 272px; box-sizing: border-box;   /* uniform band height across 4–6 */
+    --w: #F4F8FD; --w-2: #C4D2E6; --w-3: #8295B4; --cy: #6FC3E8;
+  }
+  section.splitlight .zone { padding: 46px 84px 0; }
+  section.splitlight .zone > :first-child { margin-top: 0 !important; }
+  /* Slide 4: fill the white zone — big numbers centered, dividers, band pushed down */
+  section.splitlight .zone.s4fill {
+    padding: 0 84px; min-height: 456px;
+    display: flex; flex-direction: column; justify-content: center; gap: 60px;
+  }
+  section.splitlight .s4fill .stats3 { margin-top: 0 !important; }
+  section.splitlight .s4fill .stat { font-size: 96px; }
+  section.splitlight .s4fill .stat .u { font-size: 52px; }
+  section.splitlight .s4fill .stat-label { font-size: 18px; margin-top: 16px; }
+  section.splitlight .s4fill .stats3 > div + div { border-left: 1px solid var(--line); }
+  section.splitlight .s4fill .band { margin-top: 0 !important; padding: 22px 28px; }
+  section.splitlight .s4fill .band .bt { font-size: 16px; }
+  /* Slide 6: shorter cards anchored below a clear gap under the navy header.
+     --s6-top      = space between the dark header and the first row of boxes
+     --s6-cards-h  = total height of the 2-row box block (smaller = shorter boxes) */
+  section.splitlight .zone.s6fill {
+    padding: var(--s6-top, 80px) 84px 0; height: 434px; box-sizing: border-box;
+    display: flex; flex-direction: column;
+  }
+  section.splitlight .s6fill .cards4 {
+    margin-top: 0 !important; height: var(--s6-cards-h, 286px); grid-template-rows: 1fr 1fr; gap: 20px;
+  }
+  section.splitlight .s6fill .cards4 .card { padding: 20px 32px; gap: 24px; min-height: 0; align-items: center; }
+  section.splitlight .s6fill .cico svg { width: 36px; height: 36px; }
+  section.splitlight .s6fill .h-card { font-size: 20px; }
+  section.splitlight .s6fill .p-card { font-size: 15px; line-height: 1.48; }
+  section.splitlight .stamp.r { color: #6FC3E8; }
+  section.splitlight .card, section.splitlight .node, section.splitlight .col,
+  section.splitlight .step, section.splitlight .metric, section.splitlight .chip {
+    box-shadow: 0 1px 3px rgba(12,39,70,.07), 0 1px 2px rgba(12,39,70,.04);
+  }
+  section.splitlight .band { background: #EEF4FD; border-color: #D6E2F5; }
+  section.splitlight .bar { background: #E3E8F0; }
+
+  /* ===== ALT4 — Polaris Exhibit Suite motion language ======================
+     The visual design is alt3 (navy canvas + constellation backdrop). Only the
+     MOTION is ported from the Suite: the signature "settle" overshoot entrance
+     (drop in, slight under-shoot, resolve), a "settleChart" for the showpiece,
+     and a champagne/cyan scan-beam on the monthly-cycle slide. These rules sit
+     after pitch.css, so they override its "rise" entrances. */
+  :root { --cg-settle-dur: .8s; --cg-scan-dur: 1.9s;
+          --cg-e1: cubic-bezier(.5,.04,.2,1);   /* text/card settle */
+          --cg-e2: cubic-bezier(.42,.04,.2,1);  /* chart settle */
+          --cg-e3: cubic-bezier(.7,0,.3,1); }   /* mechanical scan sweep */
+  /* settleIn / settleChart — verbatim from motion-spec.md: enter oversized + high,
+     overshoot past rest (scale dips < 1, Y dips past 0), then resolve. */
+  @keyframes cg-settle {
+    0%   { opacity: 0; transform: scale(1.2) translateY(-14px); }
+    55%  { opacity: 1; transform: scale(.97) translateY(3px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes cg-settle-chart {
+    0%   { opacity: 0; transform: scale(1.08) translateY(-10px); }
+    60%  { opacity: 1; transform: scale(.99) translateY(2px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  /* "readout" tick-in — rise 9px + tiny scale-up, like a terminal row populating */
+  @keyframes cg-pop {
+    0%   { opacity: 0; transform: translateY(9px) scale(.985); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: none; }
+  }
+  @keyframes cg-scan {
+    0%   { opacity: 0; left: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { opacity: 0; left: 100%; }
+  }
+  /* scan-beam element (slide 7) — a vertical cyan light that sweeps the slide */
+  .scanwrap { position: relative; }
+  .scanbeam { position: absolute; top: 0; bottom: 0; width: 3px; left: 0; opacity: 0; z-index: 3;
+    pointer-events: none; background: linear-gradient(transparent, var(--cy), transparent);
+    box-shadow: 0 0 18px 3px rgba(111,195,232,.5); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* every entering element settles (replaces pitch.css rise/wipe/pop/lineDraw) */
+    [data-deck-active] .anim,
+    [data-deck-active] .wipe,
+    [data-deck-active] .pop,
+    [data-deck-active] .arrow.draw {
+      animation: cg-settle var(--cg-settle-dur) var(--cg-e1) both !important;
+      clip-path: none !important; transform-origin: 50% 60%;
+    }
+    /* a big block eases in as one unit (chart-style) */
+    [data-deck-active] .settle-lg {
+      animation: cg-settle-chart calc(var(--cg-settle-dur) * 1.3) var(--cg-e2) both;
+      animation-delay: .18s; transform-origin: 55% 60%;
+    }
+    /* Suite stagger cadence — top→bottom cascade */
+    .d1{animation-delay:.12s!important}.d2{animation-delay:.30s!important}.d3{animation-delay:.46s!important}
+    .d4{animation-delay:.60s!important}.d5{animation-delay:.74s!important}.d6{animation-delay:.88s!important}
+    .d7{animation-delay:1.02s!important}.d8{animation-delay:1.16s!important}.d9{animation-delay:1.30s!important}
+
+    /* ---- Slide 5 — "readout populating": header settles, then the two tables tick
+       in row-by-row ~150ms apart, then the chips, then the band arrives last. ---- */
+    [data-deck-active].s5 thead tr,
+    [data-deck-active].s5 .kicker {
+      animation: cg-settle .7s var(--cg-e1) both; animation-delay: .40s; transform-origin: 50% 60%; }
+    [data-deck-active].s5 tbody tr { animation: cg-pop .5s var(--cg-e1) both; }
+    [data-deck-active].s5 tbody tr:nth-child(1){animation-delay:.55s}
+    [data-deck-active].s5 tbody tr:nth-child(2){animation-delay:.70s}
+    [data-deck-active].s5 tbody tr:nth-child(3){animation-delay:.85s}
+    [data-deck-active].s5 tbody tr:nth-child(4){animation-delay:1.00s}
+    [data-deck-active].s5 tbody tr:nth-child(5){animation-delay:1.15s}
+    [data-deck-active].s5 .chip { animation: cg-pop .5s var(--cg-e1) both; }
+    [data-deck-active].s5 .chip:nth-child(1){animation-delay:1.20s}
+    [data-deck-active].s5 .chip:nth-child(2){animation-delay:1.32s}
+    [data-deck-active].s5 .chip:nth-child(3){animation-delay:1.44s}
+    [data-deck-active].s5 .chip:nth-child(4){animation-delay:1.56s}
+    [data-deck-active].s5 .band { animation: cg-settle .7s var(--cg-e1) both; animation-delay: 1.45s; transform-origin: 50% 60%; }
+
+    /* ---- Slide 7 — engine scan sweep + the five stage cards pop in the beam's
+       wake (L→R), delays timed to where the 3px beam reaches each card. ---- */
+    [data-deck-active].scanwrap .scanbeam { animation: cg-scan var(--cg-scan-dur) var(--cg-e3) .2s forwards; }
+    [data-deck-active].scanwrap .steps .step {
+      animation: cg-pop .55s var(--cg-e1) both !important; transform-origin: 50% 60%; }
+    [data-deck-active].scanwrap .step:nth-of-type(1){animation-delay:.40s!important}
+    [data-deck-active].scanwrap .step:nth-of-type(2){animation-delay:.78s!important}
+    [data-deck-active].scanwrap .step:nth-of-type(3){animation-delay:1.16s!important}
+    [data-deck-active].scanwrap .step:nth-of-type(4){animation-delay:1.54s!important}
+    [data-deck-active].scanwrap .step:nth-of-type(5){animation-delay:1.92s!important}
+  }
+  @media (prefers-reduced-motion: reduce) { .scanbeam { display: none; } }
+  @media print {
+    .scanbeam { display: none; }
+    /* structurally-targeted reveals have no visible base state — force them on for print */
+    section.s5 thead tr, section.s5 .kicker, section.s5 tbody tr, section.s5 .chip, section.s5 .band,
+    section.scanwrap .steps .step { opacity: 1 !important; animation: none !important; transform: none !important; }
+  }
+
+  /* Drop alt3's bespoke orbiting border-light on the known-limits box (not a Suite motion) */
+  .limbox::after { display: none !important; }
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg">
+    <rect width="240" height="150" fill="#0B1B3F"/>
+    <circle cx="180" cy="44" r="2.4" fill="#EAF6FC"/>
+    <circle cx="150" cy="60" r="1.6" fill="#6FC3E8"/>
+    <circle cx="200" cy="70" r="1.5" fill="#6FC3E8"/>
+    <circle cx="60" cy="40" r="1.4" fill="#6FC3E8"/>
+    <circle cx="40" cy="100" r="1.3" fill="#EAF6FC"/>
+    <text x="30" y="86" font-family="Jost, sans-serif" font-size="22" font-weight="700" fill="#F4F8FD">Parallax</text>
+    <text x="30" y="108" font-family="Jost, sans-serif" font-size="9" letter-spacing="2" fill="#6FC3E8">CHICAGO GLOBAL</text>
+  </svg>
+</template>
+<deck-stage width="1280" height="800">
+
+  <!-- 1 · COVER -->
+  <section class="deep center" data-label="Cover" data-screen-label="01 Cover">
+    <img class="stamp l cover-logo" src="../assets/chicago-global-logo-white.png" alt="Chicago Global">
+    <div class="stamp r cover-px">Parallax</div>
+    <div class="eyebrow anim d1">CHICAGO GLOBAL &times; PARALLAX</div>
+    <h1 class="title anim d2" style="font-size:72px;max-width:1080px;margin-top:22px;">
+      Your house view,<br><span class="cy">in partnership with Parallax.</span></h1>
+    <p class="lede anim d4" style="font-size:19px;margin-top:24px;max-width:880px;">
+      Your CIO defines direction. Parallax translates each tilt into implementable stocks, ETFs, themes,
+      and sector calls, following your approval, with no change to how your CIO publishes.</p>
+    <div class="meta anim d5" style="position:absolute;left:0;right:0;bottom:60px;justify-content:center;margin-top:0;">
+      <span>Investment-Intelligence Partnership</span>
+      <span class="d">&middot;</span>
+      <span>For Institutional Discussion</span>
+    </div>
+  </section>
+
+  <!-- 2 · PARTNERSHIP MODEL -->
+  <section data-label="Partnership" data-screen-label="02 Partnership model">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="eyebrow anim">The partnership model</div>
+    <h1 class="title anim d1" style="max-width:none;"><span style="display:block;">We complement your house view,</span><span style="display:block;">we don&rsquo;t replace it.</span></h1>
+    <p class="lede anim d2">Parallax does not generate, replace, or compete with your view; it complements
+      through a one-way connection. The view remains yours.</p>
+    <div class="flow">
+      <div class="node anim d3"><span class="kicker">CIO &middot; Top-down</span>
+        <span class="h-card">Strategic Asset Allocation</span>
+        <span class="p-card">Mix of equity, credit, and bonds, anchored to client risk profile and horizon.</span></div>
+      <span class="arrow draw d4">&rarr;</span>
+      <div class="node anim d5"><span class="kicker">CIO &middot; Top-down</span>
+        <span class="h-card">Tactical Asset Allocation</span>
+        <span class="p-card">1 to 10 year tilts across macro, valuation, technicals, and sentiment indicators.</span></div>
+      <span class="arrow draw d6">&rarr;</span>
+      <div class="node cy anim d7"><span class="kicker cy">Parallax &middot; Bottom-up</span>
+        <span class="h-card">Portfolio Construction</span>
+        <span class="p-card">Parallax is in this domain: quant-driven stocks, ETFs, themes, and sectors, ranked by six-factor score.</span></div>
+    </div>
+    <p class="foot-note anim d8" style="margin-top:24px;">One-way data flow. Parallax pulls from your systems only; it never writes back.</p>
+    <div class="foot"><span class="l">Chicago Global &middot; Parallax &middot; Solve the market.</span><span class="r">02 / 11</span></div>
+  </section>
+
+  <!-- 3 · BOTTOM-UP IN ACTION -->
+  <section data-label="Bottom-up" data-screen-label="03 Bottom-up in action">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="eyebrow anim">Bottom-up in action</div>
+    <h1 class="title anim d1">From your view to implementable names.</h1>
+    <p class="lede anim d2">Each top-down tilt resolves into ranked, scored, sourced holdings, in your house frame.</p>
+    <div class="cols3">
+      <div class="col anim d3"><span class="kicker cy">Parallax delivers</span>
+        <span class="h-card">Country or region tilt</span>
+        <span class="p-card">Ranked stocks within the target market, matching country and region ETFs, and region-tilted thematic baskets, each scored across six factors.</span></div>
+      <div class="col anim d4"><span class="kicker cy">Parallax delivers</span>
+        <span class="h-card">Sector or theme tilt</span>
+        <span class="p-card">Peer-screened equities within the sector or theme, matching ETFs, and thematic portfolio baskets, ranked by six-factor score.</span></div>
+      <div class="col anim d5"><span class="kicker cy">Parallax delivers</span>
+        <span class="h-card">Factor-ranked tilt</span>
+        <span class="p-card">Factor-ranked candidates within each segment under coverage, aligned to your mandate and sequenced country &rarr; region &rarr; sector &rarr; factor.</span></div>
+    </div>
+    <div class="band wipe d6" style="margin-top:26px;">
+      <span class="bk">Whole-portfolio overlay &middot; Ex-ante &amp; ex-post</span>
+      <span class="bt">Selected names are assessed as one portfolio. Ex-ante before deployment (volatility, Sharpe, beta, factor and style exposure) and ex-post each cycle (realised volatility, drawdown, attribution).</span>
+    </div>
+    <div class="foot"><span class="l">Chicago Global &middot; Parallax &middot; Solve the market.</span><span class="r">03 / 11</span></div>
+  </section>
+
+  <!-- 4 · IMPLEMENTATION CAPABILITY -->
+  <section class="splitlight" data-label="Implementation" data-screen-label="04 Implementation capability">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="hdr">
+    <div class="eyebrow anim">Capability &middot; Implementation</div>
+    <h1 class="title anim d1">Every tilt becomes a ranked, scored, sourced holding.</h1>
+    <p class="lede anim d2">Parallax is a Large Investment Model that discovers, scores, constructs, and explains investment decisions.</p>
+    </div>
+    <div class="zone s4fill">
+    <div class="stats3">
+      <div class="anim d3"><div class="stat"><span class="num" data-countup="62000" data-suffix="+">62,000+</span></div><div class="stat-label">securities scored</div></div>
+      <div class="anim d4"><div class="stat"><span class="num" data-countup="48">48</span></div><div class="stat-label">global markets</div></div>
+      <div class="anim d5"><div class="stat"><span class="num" data-countup="6">6</span></div><div class="stat-label">factors per name</div></div>
+    </div>
+    <div class="band wipe d7" style="margin-top:48px;">
+      <span class="bk">The six factors</span>
+      <span class="bt"><b style="color:var(--w)">Quality &middot; Defensive &middot; Momentum &middot; Value &middot; Size &middot; Tactical</b>. Provenance to source on every name.</span>
+    </div>
+    </div><!--/zone-->
+    <div class="foot"><span class="l">Chicago Global &middot; Parallax &middot; Solve the market.</span><span class="r">04 / 11</span></div>
+  </section>
+
+  <!-- 5 · TOTAL-PORTFOLIO RISK LENS (showpiece) -->
+  <section class="splitlight s5" data-label="Risk lens" data-screen-label="05 Total-portfolio risk lens">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="hdr">
+    <div class="eyebrow anim">Capability &middot; Total-portfolio risk lens</div>
+    <h1 class="title anim d1" style="font-size:34px;">Not just stock picks. A whole-portfolio risk and return view.</h1>
+    <p class="lede anim d2" style="font-size:16px;">A real Parallax sample: Global Growth Leaders (Tech &amp; Healthcare), scored as one portfolio against ACWI.</p>
+    </div>
+    <div class="zone">
+    <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:52px;margin-top:44px;">
+      <!-- LEFT: risk/return table -->
+      <div>
+        <table class="rt">
+          <thead><tr><th>Metric</th><th class="r">Portfolio</th><th class="r">MSCI ACWI</th></tr></thead>
+          <tbody>
+            <tr><td class="lab">Total return</td><td class="r pos">+80.96%</td><td class="r">+68.26%</td></tr>
+            <tr><td class="lab">Annualized return</td><td class="r pos">+26.66%</td><td class="r">+23.04%</td></tr>
+            <tr><td class="lab">Annualized volatility</td><td class="r">12.70%</td><td class="r">12.20%</td></tr>
+            <tr><td class="lab">Max drawdown</td><td class="r pos">&minus;9.36%</td><td class="r neg">&minus;16.55%</td></tr>
+            <tr><td class="lab">Sharpe ratio</td><td class="r">1.24</td><td class="r">1.12</td></tr>
+          </tbody>
+        </table>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px;">
+          <div class="chip"><b>0.49</b><span>Beta</span></div>
+          <div class="chip"><b class="pos">+14.32%</b><span>Alpha</span></div>
+          <div class="chip"><b>0.16</b><span>Info ratio</span></div>
+          <div class="chip"><b>12.81%</b><span>Tracking err</span></div>
+        </div>
+      </div>
+      <!-- RIGHT: risk-adjusted comparison + capture/style -->
+      <div>
+        <div class="kicker" style="margin-bottom:14px;">Risk-adjusted vs ACWI</div>
+        <table class="rt">
+          <thead><tr><th>Metric</th><th class="r">Portfolio</th><th class="r">ACWI</th></tr></thead>
+          <tbody>
+            <tr><td class="lab">Sortino ratio</td><td class="r">1.77</td><td class="r">1.49</td></tr>
+            <tr><td class="lab">Calmar ratio</td><td class="r">2.85</td><td class="r">1.39</td></tr>
+            <tr><td class="lab">VaR (95%)</td><td class="r">&minus;1.04%</td><td class="r">&minus;1.14%</td></tr>
+            <tr><td class="lab">Win rate</td><td class="r">40.28%</td><td class="r">38.76%</td></tr>
+          </tbody>
+        </table>
+        <div class="band" style="margin-top:18px;display:block;">
+          <span class="bk">Capture &amp; style</span>
+          <span class="bt" style="display:block;margin-top:6px;">Up capture 66.75%, down capture 48.45% (ratio 1.38): more upside, less downside. Low beta 0.49; drawdown held to &minus;9.36% vs &minus;16.55%.</span>
+        </div>
+      </div>
+    </div>
+    </div><!--/zone-->
+    <div class="foot"><span class="l"><span class="flag">Sample Parallax portfolio</span><span class="det">Global Growth Leaders &middot; 2023-12-02 to 2026-06-04 &middot; vs ACWI</span></span><span class="r">05 / 11</span></div>
+  </section>
+
+  <!-- 6 · GOVERNANCE -->
+  <section class="splitlight" data-label="Governance" data-screen-label="06 Governance & trust">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="hdr">
+    <div class="eyebrow anim">Capability &middot; Governance</div>
+    <h1 class="title anim d1">Your authority, preserved and audited.</h1>
+    <p class="lede anim d2">Outputs stay draft until your named owner approves. Every change logged, versioned, and defensible.</p>
+    </div>
+    <div class="zone s6fill">
+    <div class="cards4">
+      <div class="card anim d3"><span class="cico" data-ic="user-check" data-sz="32"></span><div class="ctext"><span class="h-card">Human overlay</span><span class="p-card">No activation until named-owner approval is recorded. Every override is logged with the change, rationale, and prior version.</span></div></div>
+      <div class="card anim d4"><span class="cico" data-ic="shield-check" data-sz="32"></span><div class="ctext"><span class="h-card">Traceability &amp; compliance</span><span class="p-card">Source-linked outputs and version history. Same input &rarr; same output. Defensible to MAS, FCA, SFC, SEC.</span></div></div>
+      <div class="card anim d5"><span class="cico" data-ic="repeat" data-sz="32"></span><div class="ctext"><span class="h-card">Agility</span><span class="p-card">When your house view evolves, Parallax re-aligns to the latest approved view, so analytics stay inside your house frame.</span></div></div>
+      <div class="card anim d6"><span class="cico" data-ic="share-2" data-sz="32"></span><div class="ctext"><span class="h-card">Multi-surface delivery</span><span class="p-card">Approved outputs reach configured surfaces: API, MCP, and web console, per your deployment scope.</span></div></div>
+    </div>
+    </div><!--/zone-->
+    <div class="foot"><span class="l">Chicago Global &middot; Parallax &middot; Solve the market.</span><span class="r">06 / 11</span></div>
+  </section>
+
+  <!-- 7 · MONTHLY CYCLE -->
+  <section class="scanwrap" data-label="Monthly cycle" data-screen-label="07 Monthly cycle">
+    <div class="scanbeam" aria-hidden="true"></div>
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="eyebrow anim">How it runs</div>
+    <h1 class="title anim d1">One monthly publishing cycle.</h1>
+    <p class="lede anim d2">Your cadence, unchanged. Parallax fits between publish and deliver: one-way, draft until approved.</p>
+    <div class="steps">
+      <div class="step anim d3"><span class="stepno">01</span><span class="h-card" style="font-size:16px;">Publish</span><span class="p-card">Your CIO publishes the house view on your existing cadence.</span></div>
+      <span class="arrow draw d3">&rarr;</span>
+      <div class="step anim d4"><span class="stepno">02</span><span class="h-card" style="font-size:16px;">Ingest</span><span class="p-card">Parallax pulls the view through the connector and aligns bottom-up data against it.</span></div>
+      <span class="arrow draw d4">&rarr;</span>
+      <div class="step anim d5"><span class="stepno">03</span><span class="h-card" style="font-size:16px;">Structure</span><span class="p-card">Implementable names surface under each tilt with source provenance. Draft-level.</span></div>
+      <span class="arrow draw d5">&rarr;</span>
+      <div class="step anim d6"><span class="stepno">04</span><span class="h-card" style="font-size:16px;">Approve</span><span class="p-card">Your named owner reviews and approves at the human overlay.</span></div>
+      <span class="arrow draw d6">&rarr;</span>
+      <div class="step anim d7"><span class="stepno">05</span><span class="h-card" style="font-size:16px;">Deliver</span><span class="p-card">Available across configured surfaces. The cycle continues.</span></div>
+    </div>
+    <p class="foot-note anim d8" style="margin-top:26px;">Ambiguous outputs are flagged for review, not activated automatically.</p>
+    <div class="foot"><span class="l">Chicago Global &middot; Parallax &middot; Solve the market.</span><span class="r">07 / 11</span></div>
+  </section>
+
+  <!-- 8 · OPERATING DETAIL -->
+  <section data-label="Operating detail" data-screen-label="08 Operating detail">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="eyebrow anim">Operating detail</div>
+    <h1 class="title anim d1">Roles, workflow, and human override.</h1>
+    <p class="lede anim d2">Clear ownership at every step, and a parser that never overrides human judgment.</p>
+    <div class="two">
+      <div>
+        <div class="kicker cy anim d3" style="margin-bottom:6px;">Governance roles</div>
+        <div class="role anim d3"><span class="h-card" style="font-size:16px;">Owner</span><div class="p-card">Approves and activates. Typically CIO or IC chair.</div></div>
+        <div class="role anim d4"><span class="h-card" style="font-size:16px;">Reviewer</span><div class="p-card">PM or research lead validates each tilt against the report.</div></div>
+        <div class="role anim d5"><span class="h-card" style="font-size:16px;">Compliance</span><div class="p-card">Verifies auditability; runs configured exports for committee or regulatory use.</div></div>
+        <div class="role anim d6"><span class="h-card" style="font-size:16px;">Ops / Admin</span><div class="p-card">Controls publishing scope and rollback, where configured.</div></div>
+      </div>
+      <div>
+        <div class="kicker cy anim d4" style="margin-bottom:14px;">Known limits &amp; human override</div>
+        <div class="limbox anim d4">
+          <div class="lim"><span class="dot">&bull;</span><span class="p-card">Narrative compression can miss nuance; every extraction is surfaced for review.</span></div>
+          <div class="lim"><span class="dot">&bull;</span><span class="p-card">Conflicting statements require owner judgment, not parser arbitration.</span></div>
+          <div class="lim"><span class="dot">&bull;</span><span class="p-card">Parser suggestions remain draft-level until the owner approves.</span></div>
+          <div class="lim"><span class="dot">&bull;</span><span class="p-card">Any activation can be superseded by a newer approved version.</span></div>
+          <div class="lim"><span class="dot">&bull;</span><span class="p-card">Where configured, rollback to a prior approved version is supported and logged.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span class="l">Chicago Global &middot; Parallax &middot; Solve the market.</span><span class="r">08 / 11</span></div>
+  </section>
+
+  <!-- 9 · ADOPTION & PROOF -->
+  <section data-label="Adoption" data-screen-label="09 Adoption & proof">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="eyebrow anim">Adoption</div>
+    <h1 class="title anim d1">What changes once it&rsquo;s running.</h1>
+    <p class="lede anim d2">Measured against your current baseline, and a holistic view your asset-allocation lens can&rsquo;t give alone.</p>
+    <div class="metrics4">
+      <div class="metric anim d3"><div class="mv"><span class="num" data-countup="3" data-suffix=" hours">3 hours</span></div><div class="p-card" style="margin-top:6px;">Cycle time: report received &rarr; activated structured view</div></div>
+      <div class="metric anim d4"><div class="mv"><span class="num" data-countup="82" data-suffix="%">82%</span></div><div class="p-card" style="margin-top:6px;">Acceptance %: recommended names accepted without edits</div></div>
+      <div class="metric anim d5"><div class="mv"><span class="num pos" data-countup="-74" data-suffix="%">&minus;74%</span></div><div class="p-card" style="margin-top:6px;">Audit-prep hours: time saved vs. prior manual process</div></div>
+      <div class="metric anim d6"><div class="mv"><span class="num" data-countup="1" data-suffix=" cycle">1 cycle</span></div><div class="p-card" style="margin-top:6px;">IC turnaround: committee turnaround on view changes</div></div>
+    </div>
+    <div class="band wipe d7" style="margin-top:24px;">
+      <div style="flex:1;">
+        <span class="bk">Who this serves</span>
+        <span class="bt" style="display:block;margin-top:6px;">Firms building systematic or AI-driven strategies without comprehensive in-house equity research. Your CIO defines direction; Parallax fills the implementation gap between top-down view and holdings on the ground.</span>
+      </div>
+      <div style="text-align:right;flex:none;padding-left:24px;border-left:1px solid var(--line);">
+        <div class="stat pos" style="font-size:54px;"><span class="num" data-countup="13.8" data-decimals="1" data-plus="1" data-suffix="%">+13.8%</span></div>
+        <div class="stat-label" style="margin-top:4px;">sample alpha vs ACWI</div>
+      </div>
+    </div>
+    <div class="foot"><span class="l"><span class="flag">Illustrative sample metrics</span></span><span class="r">09 / 11</span></div>
+  </section>
+
+  <!-- 10 · CLOSING -->
+  <section class="deep" data-label="Closing" data-screen-label="10 Why Chicago Global">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global"><div class="stamp r">Parallax</div>
+    <div class="eyebrow anim" style="margin-top:8px;">Why partner with Chicago Global</div>
+    <h1 class="title anim d1" style="font-size:46px;">Direction stays yours.<br><span class="cy">Implementation gets sharper.</span></h1>
+    <div class="reasons">
+      <div class="card anim d3"><span class="cico" data-ic="git-compare" data-sz="30"></span><div class="ctext"><span class="h-card" style="font-size:17px;">Complement, not compete</span><span class="p-card">We never generate, replace, or override your house view.</span></div></div>
+      <div class="card anim d4"><span class="cico" data-ic="award" data-sz="30"></span><div class="ctext"><span class="h-card" style="font-size:17px;">Institutional pedigree</span><span class="p-card">50 years of research foundation; 32 Nobel prizes in economics at the University of Chicago.</span></div></div>
+      <div class="card anim d5"><span class="cico" data-ic="shield-check" data-sz="30"></span><div class="ctext"><span class="h-card" style="font-size:17px;">Defensible by design</span><span class="p-card">Versioned, source-linked, owner-approved. Same input &rarr; same output.</span></div></div>
+      <div class="card anim d6"><span class="cico" data-ic="lock" data-sz="30"></span><div class="ctext"><span class="h-card" style="font-size:17px;">Authority preserved</span><span class="p-card">Your named owner approves every activation; full audit trail throughout.</span></div></div>
+    </div>
+    <div class="cta anim d7">
+      <span class="go">Bring this to your Investment Committee.</span>
+      <span class="url">www.chicago.global</span>
+    </div>
+    <div class="foot"><span class="l">Chicago Global &middot; Parallax &middot; Solve the market.</span><span class="legal-mid" style="position:absolute;left:63%;top:50%;transform:translate(-50%,-50%);text-align:center;font-size:9.5px;line-height:1.45;letter-spacing:.04em;text-transform:none;color:var(--blue-light);max-width:620px;white-space:nowrap;">Chicago Global Pte Ltd &middot; MAS CMS101590 &middot; Shared for discussion with prospective partners.<br>Past performance is not indicative of future results.</span><span class="r">10 / 11</span></div>
+  </section>
+
+  <!-- 11 · THANK YOU -->
+  <section class="deep center" data-label="Thank you" data-screen-label="11 Thank you">
+    <img class="stamp l" src="../assets/chicago-global-logo-white.png" alt="Chicago Global">
+    <div class="stamp r">Parallax</div>
+    <div class="eyebrow anim">In partnership with Parallax</div>
+    <h1 class="title anim d1" style="font-size:84px;margin-top:18px;">Thank you.</h1>
+    <p class="lede anim d3" style="font-size:19px;margin-top:20px;max-width:760px;">
+      Bring your house view to the table. We&rsquo;ll handle the implementation,<br>following your approval.</p>
+    <div class="meta anim d5" style="margin-top:50px;">
+      <span class="d">www.chicago.global</span>
+      <span>&middot;</span>
+      <span>MAS CMS101590</span>
+    </div>
+    <div class="foot"><span class="l">Chicago Global &middot; Parallax &middot; Solve the market.</span><span class="r">11 / 11</span></div>
+  </section>
+
+</deck-stage>
+
+<script src="../assets/icons-data.js"></script>
+<script>
+  // Inject inline line-icons into [data-ic] spans (recolor via currentColor).
+  document.querySelectorAll('[data-ic]').forEach(function (el) {
+    var inner = (window.PXICONS && window.PXICONS[el.getAttribute('data-ic')]) || '';
+    var sz = el.getAttribute('data-sz') || 24;
+    el.innerHTML = '<svg width="' + sz + '" height="' + sz + '" viewBox="0 0 24 24" fill="none" ' +
+      'stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + inner + '</svg>';
+  });
+</script>
+<script>
+  // Polaris / constellation motif — hero on cover & ending, corner on content.
+  (function () {
+    // Deterministic Ursa Minor (Little Dipper) + scattered starfield. Polaris = the
+    // brightest star (tip of the Dipper's handle). Stars only — no lines, no rings.
+    // [x, y, r, opacity, white?]  ·  FULL = whole 1280×800 slide, HEAD = navy header band.
+    var FULL = [
+      [60,120,1.2,.30,0],[150,300,1.5,.40,1],[90,520,1.1,.25,0],[210,90,1.3,.35,0],
+      [260,430,1.0,.25,1],[180,650,1.4,.30,0],[330,200,1.2,.35,1],[300,560,1.1,.25,0],
+      [420,110,1.5,.40,0],[400,330,1.0,.25,1],[470,500,1.3,.30,0],[380,690,1.1,.25,1],
+      [540,180,1.2,.30,1],[560,400,1.4,.35,0],[520,630,1.0,.22,0],[620,90,1.3,.35,1],
+      [645,285,1.1,.28,0],[600,520,1.2,.30,1],[700,165,1.0,.25,0],[725,410,1.4,.35,0],
+      [680,650,1.1,.25,1],[785,105,1.3,.30,1],[805,310,1.2,.30,0],[760,540,1.0,.22,0],
+      [845,430,1.3,.32,1],[885,185,1.1,.28,0],[905,610,1.2,.30,1],[945,330,1.0,.24,0],
+      [1010,505,1.3,.30,0],[960,680,1.1,.25,1],[1150,425,1.3,.32,1],[1225,300,1.2,.30,0],
+      [1240,560,1.1,.25,0],[1100,610,1.2,.30,1],[1185,685,1.0,.24,0],
+      /* Ursa Minor — Little Dipper (upper-right); Polaris brightest */
+      [1188,104,3.0,.95,1],[1124,150,1.9,.60,1],[1066,196,1.7,.52,0],[1014,226,1.8,.55,1],
+      [992,176,1.5,.46,0],[1048,150,1.5,.46,1],[1098,202,1.6,.50,0]
+    ];
+    var HEAD = [
+      [80,70,1.2,.30,0],[180,150,1.4,.35,1],[300,90,1.2,.30,1],[420,175,1.3,.32,0],
+      [520,80,1.1,.28,1],[640,155,1.3,.32,0],[700,95,1.1,.26,1],[820,165,1.2,.30,0],
+      [905,72,1.2,.30,1],[1225,205,1.2,.30,0],[1000,212,1.2,.30,1],[965,120,1.1,.26,0],
+      /* mini Little Dipper; Polaris brightest */
+      [1186,66,2.6,.95,1],[1124,104,1.7,.55,1],[1072,140,1.6,.48,0],[1026,162,1.7,.50,1],
+      [1058,112,1.4,.44,0],[1104,150,1.5,.46,1]
+    ];
+    function field(stars, w, h) {
+      var c = stars.map(function (s, idx) {
+        var tw = (idx % 3 === 0);   // ~ a third of the stars twinkle, staggered
+        var extra = tw ? ' class="tw" style="animation-duration:' + (2.4 + (idx % 5) * 0.7).toFixed(1) +
+          's;animation-delay:' + ((idx % 8) * 0.4).toFixed(2) + 's"' : '';
+        return '<circle cx="' + s[0] + '" cy="' + s[1] + '" r="' + s[2] + '" fill="' +
+          (s[4] ? '#EAF6FC' : '#6FC3E8') + '" fill-opacity="' + s[3] + '"' + extra + '/>';
+      }).join('');
+      return '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid slice" ' +
+        'fill="none" xmlns="http://www.w3.org/2000/svg">' + c + '</svg>';
+    }
+    var secs = document.querySelectorAll('deck-stage > section');
+    secs.forEach(function (sec) {
+      var hdr = sec.querySelector('.hdr');           // splitlight → same field, clipped to the navy header
+      var host = hdr || sec;
+      var d = document.createElement('div');
+      d.className = hdr ? 'deco clip' : 'deco';
+      d.setAttribute('aria-hidden', 'true');
+      d.innerHTML = field(FULL, 1280, 800);          // identical star positions on every slide
+      host.insertBefore(d, host.firstChild);
+    });
+  })();
+</script>
+<script src="anim.js"></script>
+<script src="../slides/deck-stage.js"></script>
+
+<!-- Tweaks panel (React) — controls slide 6 box size + gap below the navy header -->
+<div id="tweak-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+  const PITCH_TWEAKS = /*EDITMODE-BEGIN*/{
+    "s6Top": 68,
+    "s6CardsH": 340,
+    "flagColor": "blue",
+    "settleDur": 0.82,
+    "scanDur": 1.9
+  }/*EDITMODE-END*/;
+
+  var FLAG_COLORS = {
+    orange: ['#ED7D31', '#ffffff'],
+    blue:   ['#4FC3F7', '#ffffff'],
+    maroon: ['#C13A5B', '#ffffff']
+  };
+
+  function applyVars(t) {
+    const r = document.documentElement.style;
+    r.setProperty('--s6-top', t.s6Top + 'px');
+    r.setProperty('--s6-cards-h', t.s6CardsH + 'px');
+    var fc = FLAG_COLORS[t.flagColor] || FLAG_COLORS.orange;
+    r.setProperty('--flag-bg', fc[0]);
+    r.setProperty('--flag-fg', fc[1]);
+    r.setProperty('--cg-settle-dur', t.settleDur + 's');
+    r.setProperty('--cg-scan-dur', t.scanDur + 's');
+  }
+
+  function PitchTweaks() {
+    const [t, setTweak] = useTweaks(PITCH_TWEAKS);
+    React.useEffect(() => { applyVars(t); }, [t.s6Top, t.s6CardsH, t.flagColor, t.settleDur, t.scanDur]);
+    return (
+      <TweaksPanel>
+        <TweakSection label="Motion — Suite settle entrance" />
+        <TweakSlider label="Settle speed (per element)" value={t.settleDur} min={0.4} max={1.4} step={0.02} unit="s"
+                     onChange={(v) => setTweak('settleDur', v)} />
+        <TweakSection label="Slide 7 — scan beam" />
+        <TweakSlider label="Sweep duration" value={t.scanDur} min={1} max={4} step={0.1} unit="s"
+                     onChange={(v) => setTweak('scanDur', v)} />
+        <TweakSection label="Slide 6 — governance boxes" />
+        <TweakSlider label="Space below header" value={t.s6Top} min={24} max={140} step={4} unit="px"
+                     onChange={(v) => setTweak('s6Top', v)} />
+        <TweakSlider label="Box height" value={t.s6CardsH} min={220} max={360} step={4} unit="px"
+                     onChange={(v) => setTweak('s6CardsH', v)} />
+        <TweakSection label="Disclaimer flag (slides 5 & 9)" />
+        <TweakRadio label="Flag colour" value={t.flagColor}
+                    options={['orange', 'blue', 'maroon']}
+                    onChange={(v) => setTweak('flagColor', v)} />
+      </TweaksPanel>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('tweak-root')).render(<PitchTweaks />);
+</script>
+</body>
+</html>

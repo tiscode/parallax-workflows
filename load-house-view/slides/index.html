@@ -1,0 +1,208 @@
+<!doctype html>
+<!-- @dsCard group="Slides" name="Slide templates" subtitle="7 brand deck archetypes (title, stats, framework, quote, closing)" viewport="1280x720" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Global / Parallax — Slide templates</title>
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  deck-stage:not(:defined) { visibility: hidden; }
+  html, body { margin: 0; background: #05131f; }
+
+  /* ---- Slide system ---------------------------------------------------- */
+  section {
+    background: #fff;
+    font-family: var(--font-body);
+    color: var(--ink);
+    box-sizing: border-box;
+    padding: 132px 150px;
+    overflow: hidden;
+  }
+  .eyebrow { font-family: var(--font-head); font-weight: 700; text-transform: uppercase;
+    letter-spacing: .14em; font-size: 26px; color: var(--blue-accent); }
+  .s-h1 { font-family: var(--font-head); font-weight: 700; color: var(--navy);
+    font-size: 104px; line-height: 1.04; letter-spacing: -.01em; margin: 0; }
+  .s-h2 { font-family: var(--font-head); font-weight: 700; color: var(--navy);
+    font-size: 68px; line-height: 1.08; margin: 0; }
+  .s-body { font-size: 34px; line-height: 1.5; color: var(--ink); margin: 0; }
+  .num { font-family: var(--font-num); font-variant-numeric: tabular-nums lining-nums; }
+
+  /* footer tag shared */
+  .deck-foot { position: absolute; left: 150px; bottom: 70px; display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-body); font-size: 22px; color: var(--blue-accent); }
+  .deck-foot img { width: 24px; height: 27px; }
+
+  /* dark slides */
+  .dark { background: var(--navy); color: #fff; }
+  .dark .s-h1, .dark .s-h2 { color: #fff; }
+  .dark .s-body { color: #cdd9e8; }
+  .dark .eyebrow { color: var(--blue-light); }
+  .beam { position: absolute; inset: 0; opacity: .55; pointer-events: none;
+    background: conic-gradient(from 215deg at 82% -5%, rgba(146,166,193,0), rgba(146,166,193,.32), rgba(146,166,193,0) 32%); }
+
+  .wm { font-family: var(--font-head); font-weight: 700; letter-spacing: .22em; text-transform: uppercase; font-size: 24px; }
+
+  .icn { display: inline-flex; }
+  .icn svg { display: block; }
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+  <!-- 1 · TITLE (navy) -->
+  <section class="dark" data-label="Title" style="display:flex;flex-direction:column;justify-content:center;">
+    <div class="beam"></div>
+    <div style="position:relative;">
+      <div class="wm" style="color:#fff;">Chicago&nbsp;Global</div>
+      <h1 class="s-h1" style="margin-top:48px;max-width:1400px;">Investment Intelligence
+        <span style="color:var(--blue-light);">for better decisions</span></h1>
+      <p class="s-body" style="margin-top:40px;max-width:1080px;">A Large Investment Model that discovers,
+        scores, constructs, and explains investment decisions across 62,000+ securities and 48 markets.</p>
+    </div>
+    <div class="deck-foot" style="color:var(--blue-light);">
+      <img src="../assets/parallax-mark-white.svg" alt=""> Powered by Parallax
+    </div>
+  </section>
+
+  <!-- 2 · STATS / thesis (white) -->
+  <section data-label="Coverage" style="display:flex;flex-direction:column;justify-content:center;">
+    <div class="eyebrow">The coverage</div>
+    <h2 class="s-h2" style="margin-top:28px;max-width:1320px;">Quantitative rigor, applied at scale</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:90px;">
+      <div>
+        <div class="num" style="font-size:120px;font-weight:700;color:var(--orange);line-height:1;">62,000<span style="font-size:64px;">+</span></div>
+        <div class="s-body" style="margin-top:14px;color:var(--blue-accent);">securities scored</div>
+      </div>
+      <div>
+        <div class="num" style="font-size:120px;font-weight:700;color:var(--navy);line-height:1;">48</div>
+        <div class="s-body" style="margin-top:14px;color:var(--blue-accent);">global markets</div>
+      </div>
+      <div>
+        <div class="num" style="font-size:120px;font-weight:700;color:var(--navy);line-height:1;">15<span style="font-size:64px;">+</span></div>
+        <div class="s-body" style="margin-top:14px;color:var(--blue-accent);">factor scores / stock</div>
+      </div>
+    </div>
+    <div class="deck-foot"><img src="../assets/parallax-mark-navy.svg" alt=""> Powered by Parallax</div>
+  </section>
+
+  <!-- 3 · SIX-FACTOR framework (white) -->
+  <section data-label="Six factors" style="display:flex;flex-direction:column;justify-content:center;">
+    <div class="eyebrow">The framework</div>
+    <h2 class="s-h2" style="margin-top:24px;">Six factors, evaluated on every security</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:64px;">
+      <div class="fcard" data-ic="gem" data-t="Quality" data-d="Strong fundamentals & competitive advantages"></div>
+      <div class="fcard" data-ic="shield-half" data-t="Defensive" data-d="Prioritize risk-adjusted returns"></div>
+      <div class="fcard" data-ic="trending-up" data-t="Momentum" data-d="Capture positive price trends"></div>
+      <div class="fcard" data-ic="scale" data-t="Value" data-d="Buy quality assets below intrinsic value"></div>
+      <div class="fcard" data-ic="search" data-t="Size" data-d="Exploit attention gaps in smaller companies"></div>
+      <div class="fcard" data-ic="crosshair" data-t="Tactical" data-d="Capture short-term liquidity dislocations"></div>
+    </div>
+    <div class="deck-foot"><img src="../assets/parallax-mark-navy.svg" alt=""> Powered by Parallax</div>
+  </section>
+
+  <!-- 4 · THREE LAYERS (white) -->
+  <section data-label="Three layers" style="display:flex;flex-direction:column;justify-content:center;">
+    <div class="eyebrow">The architecture</div>
+    <h2 class="s-h2" style="margin-top:24px;">Three layers, one integration</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:72px;">
+      <div class="lcard">
+        <div class="rn">I</div><div class="lc-cat">Embedded</div><div class="lc-nm">Thematic Layer</div>
+      </div>
+      <div class="lcard">
+        <div class="rn">II</div><div class="lc-cat">Advisor</div><div class="lc-nm">Empowerment Layer</div>
+      </div>
+      <div class="lcard">
+        <div class="rn">III</div><div class="lc-cat">Regulated AI</div><div class="lc-nm">Auditable Layer</div>
+      </div>
+    </div>
+    <div class="deck-foot"><img src="../assets/parallax-mark-navy.svg" alt=""> Powered by Parallax</div>
+  </section>
+
+  <!-- 5 · COMPARISON (white) -->
+  <section data-label="Positioning" style="display:flex;flex-direction:column;justify-content:center;">
+    <div class="eyebrow">Positioning</div>
+    <h2 class="s-h2" style="margin-top:24px;">What we are — and what we are not</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:64px;">
+      <div style="background:#F5F6F8;border:1px solid var(--border);border-radius:8px;padding:52px;">
+        <div class="eyebrow" style="color:var(--success);">We are</div>
+        <ul class="cmp">
+          <li>An analytics engine — and the firm that built it</li>
+          <li>Factor-based, portfolio-aware intelligence</li>
+          <li>Workflow-portable: Console, API, MCP</li>
+        </ul>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:52px;">
+        <div class="eyebrow" style="color:var(--error);">We are not</div>
+        <ul class="cmp neg">
+          <li>A Bloomberg replacement</li>
+          <li>A chatbot</li>
+          <li>A "guidance app"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deck-foot"><img src="../assets/parallax-mark-navy.svg" alt=""> Powered by Parallax</div>
+  </section>
+
+  <!-- 6 · BIG QUOTE (cream) -->
+  <section data-label="Quote" style="background:var(--bg-cream);display:flex;flex-direction:column;justify-content:center;">
+    <blockquote style="margin:0;font-family:var(--font-head);font-weight:400;color:var(--navy);
+      font-size:62px;line-height:1.32;max-width:1480px;">
+      “Fifty years of research and development were needed to lay the groundwork for Chicago Global.
+      Today, we deliver unrivaled investment technology in an ultra efficient format.”
+    </blockquote>
+    <div class="eyebrow" style="margin-top:56px;">Ivan Chelebiev &nbsp;·&nbsp; Co-Founder</div>
+    <div class="deck-foot"><img src="../assets/parallax-mark-navy.svg" alt=""> Powered by Parallax</div>
+  </section>
+
+  <!-- 7 · CLOSING (navy) -->
+  <section class="dark" data-label="Closing" style="display:flex;flex-direction:column;justify-content:center;">
+    <div class="beam"></div>
+    <div style="position:relative;">
+      <div style="display:flex;align-items:center;gap:18px;">
+        <img src="../assets/parallax-mark-white.svg" alt="" style="width:54px;height:60px;">
+        <span style="font-family:var(--font-head);font-weight:700;font-size:54px;color:#fff;">Parallax</span>
+      </div>
+      <p class="s-body" style="margin-top:44px;max-width:1100px;font-size:40px;color:#fff;">
+        Start making smarter investment decisions.</p>
+      <div style="margin-top:36px;font-family:var(--font-body);font-size:28px;color:var(--blue-light);line-height:1.6;">
+        info@chicago.global &nbsp;·&nbsp; 30 Cecil Street #16-08, Singapore 049712<br>
+        MAS-regulated · CMS101590
+      </div>
+      <div class="editorial" style="margin-top:64px;font-style:italic;color:var(--orange);font-size:56px;">Solve the market.</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="../assets/icons-data.js"></script>
+<script>
+  // Render brand line-icons + factor/layer cards (static slides, no framework).
+  function svgFor(name, color, size) {
+    const inner = (window.PXICONS && window.PXICONS[name]) || "";
+    return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}"
+      stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+  }
+  document.querySelectorAll(".fcard").forEach((el) => {
+    el.style.cssText = "background:#fff;border:1px solid var(--border);border-radius:8px;padding:40px;";
+    el.innerHTML =
+      `<span class="icn">${svgFor(el.dataset.ic, "var(--orange)", 44)}</span>
+       <div style="font-family:var(--font-head);font-weight:700;color:var(--navy);font-size:40px;margin-top:24px;">${el.dataset.t}</div>
+       <div style="font-size:26px;color:var(--blue-accent);margin-top:12px;line-height:1.4;">${el.dataset.d}</div>`;
+  });
+</script>
+<style>
+  .cmp { list-style:none; margin:36px 0 0; padding:0; display:flex; flex-direction:column; gap:24px; }
+  .cmp li { position:relative; padding-left:48px; font-size:30px; color:var(--ink); line-height:1.35; }
+  .cmp li::before { content:"→"; position:absolute; left:0; color:var(--success); font-family:var(--font-num); font-weight:700; }
+  .cmp.neg li::before { content:"×"; color:var(--error); }
+  .lcard { background:#fff; border:1px solid var(--border); border-radius:8px; padding:48px; }
+  .rn { font-family: var(--font-editorial); font-style:italic; color:var(--orange); font-size:96px; line-height:.9; }
+  .lc-cat { font-family:var(--font-head); font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    font-size:22px; color:var(--blue-accent); margin-top:24px; }
+  .lc-nm { font-family:var(--font-head); font-weight:700; color:var(--navy); font-size:40px; margin-top:8px; }
+</style>
+<script src="deck-stage.js"></script>
+</body>
+</html>

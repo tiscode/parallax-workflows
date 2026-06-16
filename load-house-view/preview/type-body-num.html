@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- @dsCard group="Type" name="Type — body + numbers" subtitle="Gill Sans body + Optima tabular figures" viewport="700x160" --><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../fonts.css"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0}
+  .wrap{background:#fff;padding:22px 28px;font-family:var(--font-body);display:flex;gap:30px}
+  .col{flex:1}
+  .tag{font-family:ui-monospace,monospace;font-size:10px;color:var(--label-grey);margin-bottom:8px}
+  .bodytxt{font-family:var(--font-body);font-size:15px;line-height:1.6;color:#1F2937;margin:0}
+  .nums{font-family:var(--font-num);font-variant-numeric:tabular-nums lining-nums;color:#0C2746;display:flex;flex-direction:column;gap:5px;font-size:15px}
+  .nums .r{display:flex;justify-content:space-between;gap:20px}
+  .pos{color:#15803D}.neg{color:#B91C1C}
+  .sep{width:1px;background:#e5e7eb}
+</style></head><body>
+<div class="wrap">
+  <div class="col">
+    <div class="tag">Body · Gill Sans → Cabin · 11pt</div>
+    <p class="bodytxt">Parallax discovers, scores, constructs, and explains investment decisions across 62,000+ securities and 48 markets.</p>
+  </div>
+  <div class="sep"></div>
+  <div class="col">
+    <div class="tag">Numbers · Optima tabular</div>
+    <div class="nums">
+      <div class="r"><span>AAPL</span><span class="pos">+8.2%</span></div>
+      <div class="r"><span>MSFT</span><span class="pos">+1.4%</span></div>
+      <div class="r"><span>TSLA</span><span class="neg">−3.1%</span></div>
+    </div>
+  </div>
+</div>
+</body></html>

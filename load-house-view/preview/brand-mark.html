@@ -1,0 +1,21 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Parallax mark" subtitle="Current live mark — navy on light, white on dark" viewport="700x190" --><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../fonts.css"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0}
+  .card{display:flex;height:190px;font-family:var(--font-body)}
+  .half{flex:1;display:flex;align-items:center;gap:16px;padding:24px 30px}
+  .light{background:#fff}
+  .dark{background:#0C2746}
+  .mark{width:40px;height:44px;flex:none}
+  .wm{font-family:var(--font-head);font-weight:700;font-size:26px;letter-spacing:.01em}
+  .light .wm{color:#0C2746}.dark .wm{color:#fff}
+  .lbl{font-size:11px;letter-spacing:.04em}
+  .light .lbl{color:#6B7280}.dark .lbl{color:#92A6C1}
+  .stk{display:flex;flex-direction:column;gap:3px}
+</style></head><body>
+<div class="card">
+  <div class="half light"><img class="mark" src="../assets/parallax-mark-navy.svg" alt=""><div class="stk"><span class="wm">Parallax</span><span class="lbl">Navy on light</span></div></div>
+  <div class="half dark"><img class="mark" src="../assets/parallax-mark-white.svg" alt=""><div class="stk"><span class="wm">Parallax</span><span class="lbl">White on dark</span></div></div>
+</div>
+</body></html>

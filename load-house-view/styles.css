@@ -1,0 +1,27 @@
+/* =============================================================================
+   Chicago Global / Parallax — Design System entry point
+   -----------------------------------------------------------------------------
+   Single stylesheet for consumers to link. Pull this one file in and you get the
+   web-font substitutes plus the full token + element layer:
+
+       <link rel="stylesheet" href="styles.css">
+
+   Import order matters:
+     1. fonts.css            — loads the free Google substitutes for the licensed
+                               brand fonts (Futura→Jost, Gill Sans→Cabin,
+                               Optima→Carlito, Instrument Serif). The real brand
+                               names stay FIRST in every --font-* stack, so any
+                               machine with the licensed fonts installed (or a
+                               production build that embeds them) wins. NorPath
+                               (the Parallax wordmark) is custom and intentionally
+                               not substituted.
+     2. colors_and_type.css  — canonical color / type / spacing / radius / shadow
+                               tokens (light + dark themes) and semantic element
+                               styles.
+
+   Deck/deliverable stylesheets (e.g. pitch/pitch.css) are intentionally NOT
+   imported here — they are scoped to their own artifacts, not the global system.
+   ============================================================================= */
+
+@import url("fonts.css");
+@import url("colors_and_type.css");

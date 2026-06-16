@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Global × Parallax — Polaris Exhibit Suite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500;1,8..60,600&family=Jost:wght@400;500;600;700&family=Cabin:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="suite.css">
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg">
+    <rect width="240" height="150" fill="#070f1a"/>
+    <path d="M120 75 L150 60 L150 90 Z" fill="#c9a55f" opacity="0.9"/>
+    <path d="M120 75 L90 60 L90 90 Z" fill="#e9d8b0" opacity="0.9"/>
+    <circle cx="120" cy="75" r="3" fill="#fff"/>
+    <text x="120" y="120" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="15" fill="#e9d8b0">Polaris Suite</text>
+  </svg>
+</template>
+
+<div id="progress"></div>
+
+<div id="app">
+<!-- ===================================================== NAV CHROME -->
+<div id="nav">
+  <div class="brandrow">
+    <div class="px-wordmark"><b>Parallax</b><span>Solve the market.</span></div>
+    <div class="client">Chicago Global</div>
+  </div>
+  <div class="srow">
+    <div class="tabs" id="tabs"></div>
+    <div class="controls">
+      <button class="cbtn" data-act="prev" title="Previous (←)">&#8249;</button>
+      <button class="cbtn" data-act="next" title="Next (→)">&#8250;</button>
+      <button class="cbtn" data-act="grid" title="Overview (M)">&#9636;</button>
+    </div>
+  </div>
+  <div class="subrow">
+    <span class="sub-eyebrow">Exhibit</span>
+    <span class="sub-desc" id="subdesc"></span>
+  </div>
+</div>
+
+<!-- ===================================================== STAGE -->
+<div id="stage">
+
+  <!-- 01 · COVER -->
+  <section class="exhibit center-v" data-tab="Cover" data-desc="In partnership with Parallax · for institutional discussion">
+    <div class="ex-inner">
+      <div class="eyebrow anim">Chicago Global &times; Parallax</div>
+      <h1 class="headline anim d1" style="font-size:clamp(40px,5.6vw,76px); max-width:18ch;">Your house view, <em>in partnership with Parallax.</em></h1>
+      <p class="lead anim d3" style="font-size:clamp(16px,1.5vw,20px); max-width:70ch;">Your CIO defines direction. Parallax translates each tilt into implementable stocks, ETFs, themes, and sector calls, following your approval, with no change to how your CIO publishes.</p>
+      <div class="meta-mono anim d5" style="margin-top:38px;">Investment-Intelligence Partnership &nbsp;·&nbsp; For Institutional Discussion</div>
+    </div>
+  </section>
+
+  <!-- 02 · PARTNERSHIP MODEL -->
+  <section class="exhibit" data-tab="Partnership" data-desc="We complement your house view — we don't replace it">
+    <div class="ex-inner">
+      <div class="eyebrow anim">The partnership model</div>
+      <h1 class="headline anim d1">We complement your house view, <em>we don't replace it.</em></h1>
+      <p class="lead anim d2">Parallax does not generate, replace, or compete with your view; it complements through a one-way connection. The view remains yours.</p>
+      <div class="flow">
+        <div class="node panel anim d3"><span class="card-kicker">CIO · Top-down</span><span class="card-title">Strategic Asset Allocation</span><span class="card-body">Mix of equity, credit, and bonds, anchored to client risk profile and horizon.</span></div>
+        <span class="arrow anim d4">&rarr;</span>
+        <div class="node panel anim d5"><span class="card-kicker">CIO · Top-down</span><span class="card-title">Tactical Asset Allocation</span><span class="card-body">1 to 10 year tilts across macro, valuation, technicals, and sentiment indicators.</span></div>
+        <span class="arrow anim d6">&rarr;</span>
+        <div class="node panel lift anim d7" style="border-color:var(--gold-hair);"><span class="card-kicker">Parallax · Bottom-up</span><span class="card-title">Portfolio Construction</span><span class="card-body">Parallax is in this domain: quant-driven stocks, ETFs, themes, and sectors, ranked by six-factor score.</span></div>
+      </div>
+      <div class="ex-foot"><span class="live">One-way data flow · Parallax pulls from your systems only · never writes back</span><span class="pageno">02 / 11</span></div>
+    </div>
+  </section>
+
+  <!-- 03 · BOTTOM-UP IN ACTION -->
+  <section class="exhibit" data-tab="Bottom-up" data-desc="From your view to implementable names">
+    <div class="ex-inner">
+      <div class="eyebrow anim">Bottom-up in action</div>
+      <h1 class="headline anim d1">From your view to <em>implementable names.</em></h1>
+      <p class="lead anim d2">Each top-down tilt resolves into ranked, scored, sourced holdings, in your house frame.</p>
+      <div class="cols3">
+        <div class="col panel anim d3"><span class="card-kicker">Parallax delivers</span><span class="card-title">Country or region tilt</span><span class="card-body">Ranked stocks within the target market, matching country and region ETFs, and region-tilted thematic baskets, each scored across six factors.</span></div>
+        <div class="col panel anim d4"><span class="card-kicker">Parallax delivers</span><span class="card-title">Sector or theme tilt</span><span class="card-body">Peer-screened equities within the sector or theme, matching ETFs, and thematic portfolio baskets, ranked by six-factor score.</span></div>
+        <div class="col panel anim d5"><span class="card-kicker">Parallax delivers</span><span class="card-title">Factor-ranked tilt</span><span class="card-body">Factor-ranked candidates within each segment under coverage, aligned to your mandate and sequenced country &rarr; region &rarr; sector &rarr; factor.</span></div>
+      </div>
+      <div class="band anim d6" style="margin-top:26px;">
+        <span class="bk">Whole-portfolio overlay · Ex-ante &amp; ex-post</span>
+        <span class="bt">Selected names are assessed as one portfolio. <b>Ex-ante</b> before deployment (volatility, Sharpe, beta, factor and style exposure) and <b>ex-post</b> each cycle (realised volatility, drawdown, attribution).</span>
+      </div>
+      <div class="ex-foot"><span class="live">Six-factor coverage · provenance to source</span><span class="pageno">03 / 11</span></div>
+    </div>
+  </section>
+
+  <!-- 04 · IMPLEMENTATION CAPABILITY -->
+  <section class="exhibit center-v" data-tab="Implementation" data-desc="Every tilt becomes a ranked, scored, sourced holding">
+    <div class="ex-inner">
+      <div class="eyebrow anim">Capability · Implementation</div>
+      <h1 class="headline anim d1">Every tilt becomes a <em>ranked, scored, sourced</em> holding.</h1>
+      <p class="lead anim d2">Parallax is a Large Investment Model that discovers, scores, constructs, and explains investment decisions.</p>
+      <div class="statrow">
+        <div class="cell anim d3"><div class="stat num" data-count="62000" data-suffix="+">0</div><div class="stat-label">securities scored</div></div>
+        <div class="cell anim d4"><div class="stat num" data-count="48">0</div><div class="stat-label">global markets</div></div>
+        <div class="cell anim d5"><div class="stat num" data-count="6">0</div><div class="stat-label">factors per name</div></div>
+      </div>
+      <div class="band anim d7" style="margin-top:48px;">
+        <span class="bk">The six factors</span>
+        <span class="bt"><b>Quality · Defensive · Momentum · Value · Size · Tactical.</b> Provenance to source on every name.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · TOTAL-PORTFOLIO RISK LENS (showpiece) -->
+  <section class="exhibit" data-tab="Risk lens" data-desc="A whole-portfolio risk and return view — not just stock picks">
+    <div class="ex-inner">
+      <div class="eyebrow anim">Capability · Total-portfolio risk lens</div>
+      <h1 class="headline anim d1" style="font-size:clamp(26px,2.9vw,36px);">Not just stock picks. <em>A whole-portfolio risk and return view.</em></h1>
+      <p class="lead anim d2" style="font-size:15px;">A real Parallax sample: Global Growth Leaders (Tech &amp; Healthcare), scored as one portfolio against ACWI.</p>
+      <div class="settle-lg" style="display:grid; grid-template-columns:1.05fr 1fr; gap:48px; margin-top:36px;">
+        <div>
+          <table class="rt">
+            <thead><tr><th>Metric</th><th class="r">Portfolio</th><th class="r">MSCI ACWI</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">Total return</td><td class="r pos">+80.96%</td><td class="r">+68.26%</td></tr>
+              <tr><td class="lab">Annualized return</td><td class="r pos">+26.66%</td><td class="r">+23.04%</td></tr>
+              <tr><td class="lab">Annualized volatility</td><td class="r">12.70%</td><td class="r">12.20%</td></tr>
+              <tr><td class="lab">Max drawdown</td><td class="r pos">&minus;9.36%</td><td class="r neg">&minus;16.55%</td></tr>
+              <tr><td class="lab">Sharpe ratio</td><td class="r">1.24</td><td class="r">1.12</td></tr>
+            </tbody>
+          </table>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:16px;">
+            <div class="chip"><b>0.49</b><span>Beta</span></div>
+            <div class="chip"><b class="pos">+14.32%</b><span>Alpha</span></div>
+            <div class="chip"><b>0.16</b><span>Info ratio</span></div>
+            <div class="chip"><b>12.81%</b><span>Tracking err</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="card-kicker" style="margin-bottom:12px;">Risk-adjusted vs ACWI</div>
+          <table class="rt">
+            <thead><tr><th>Metric</th><th class="r">Portfolio</th><th class="r">ACWI</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">Sortino ratio</td><td class="r">1.77</td><td class="r">1.49</td></tr>
+              <tr><td class="lab">Calmar ratio</td><td class="r">2.85</td><td class="r">1.39</td></tr>
+              <tr><td class="lab">VaR (95%)</td><td class="r">&minus;1.04%</td><td class="r">&minus;1.14%</td></tr>
+              <tr><td class="lab">Win rate</td><td class="r">40.28%</td><td class="r">38.76%</td></tr>
+            </tbody>
+          </table>
+          <div class="band" style="margin-top:16px; display:block;">
+            <span class="bk">Capture &amp; style</span>
+            <span class="bt" style="display:block; margin-top:6px;">Up capture 66.75%, down capture 48.45% (ratio 1.38): more upside, less downside. Low beta 0.49; drawdown held to &minus;9.36% vs &minus;16.55%.</span>
+          </div>
+        </div>
+      </div>
+      <div class="ex-foot"><span class="flag">Sample Parallax portfolio</span><span class="pageno">Global Growth Leaders · 2023-12-02 → 2026-06-04 · 05 / 11</span></div>
+    </div>
+  </section>
+
+  <!-- 06 · GOVERNANCE -->
+  <section class="exhibit" data-tab="Governance" data-desc="Your authority, preserved and audited">
+    <div class="ex-inner">
+      <div class="eyebrow anim">Capability · Governance</div>
+      <h1 class="headline anim d1">Your authority, <em>preserved and audited.</em></h1>
+      <p class="lead anim d2">Outputs stay draft until your named owner approves. Every change logged, versioned, and defensible.</p>
+      <div class="cards2">
+        <div class="card panel anim d3"><span class="ico" data-ic="user-check" data-sz="30"></span><div><span class="card-title">Human overlay</span><div class="card-body" style="margin-top:5px;">No activation until named-owner approval is recorded. Every override is logged with the change, rationale, and prior version.</div></div></div>
+        <div class="card panel anim d4"><span class="ico" data-ic="shield-check" data-sz="30"></span><div><span class="card-title">Traceability &amp; compliance</span><div class="card-body" style="margin-top:5px;">Source-linked outputs and version history. Same input &rarr; same output. Defensible to MAS, FCA, SFC, SEC.</div></div></div>
+        <div class="card panel anim d5"><span class="ico" data-ic="repeat" data-sz="30"></span><div><span class="card-title">Agility</span><div class="card-body" style="margin-top:5px;">When your house view evolves, Parallax re-aligns to the latest approved view, so analytics stay inside your house frame.</div></div></div>
+        <div class="card panel anim d6"><span class="ico" data-ic="share-2" data-sz="30"></span><div><span class="card-title">Multi-surface delivery</span><div class="card-body" style="margin-top:5px;">Approved outputs reach configured surfaces: API, MCP, and web console, per your deployment scope.</div></div></div>
+      </div>
+      <div class="ex-foot"><span class="live">Draft until approved · versioned · source-linked</span><span class="pageno">06 / 11</span></div>
+    </div>
+  </section>
+
+  <!-- 07 · MONTHLY CYCLE -->
+  <section class="exhibit" data-tab="Monthly cycle" data-desc="One monthly publishing cycle — your cadence, unchanged">
+    <div class="ex-inner scanwrap" style="position:relative;">
+      <div class="scanbeam"></div>
+      <div class="eyebrow anim">How it runs</div>
+      <h1 class="headline anim d1">One <em>monthly publishing cycle.</em></h1>
+      <p class="lead anim d2">Your cadence, unchanged. Parallax fits between publish and deliver: one-way, draft until approved.</p>
+      <div class="steps">
+        <div class="step panel anim d3"><span class="stepno">01</span><span class="card-title" style="font-size:16px;">Publish</span><span class="card-body">Your CIO publishes the house view on your existing cadence.</span></div>
+        <span class="arrow anim d3">&rarr;</span>
+        <div class="step panel anim d4"><span class="stepno">02</span><span class="card-title" style="font-size:16px;">Ingest</span><span class="card-body">Parallax pulls the view through the connector and aligns bottom-up data against it.</span></div>
+        <span class="arrow anim d4">&rarr;</span>
+        <div class="step panel anim d5"><span class="stepno">03</span><span class="card-title" style="font-size:16px;">Structure</span><span class="card-body">Implementable names surface under each tilt with source provenance. Draft-level.</span></div>
+        <span class="arrow anim d5">&rarr;</span>
+        <div class="step panel anim d6"><span class="stepno">04</span><span class="card-title" style="font-size:16px;">Approve</span><span class="card-body">Your named owner reviews and approves at the human overlay.</span></div>
+        <span class="arrow anim d6">&rarr;</span>
+        <div class="step panel anim d7"><span class="stepno">05</span><span class="card-title" style="font-size:16px;">Deliver</span><span class="card-body">Available across configured surfaces. The cycle continues.</span></div>
+      </div>
+      <div class="ex-foot"><span class="live">Ambiguous outputs are flagged for review, not activated automatically</span><span class="pageno">07 / 11</span></div>
+    </div>
+  </section>
+
+  <!-- 08 · OPERATING DETAIL -->
+  <section class="exhibit" data-tab="Operating detail" data-desc="Roles, workflow, and human override">
+    <div class="ex-inner">
+      <div class="eyebrow anim">Operating detail</div>
+      <h1 class="headline anim d1">Roles, workflow, and <em>human override.</em></h1>
+      <p class="lead anim d2">Clear ownership at every step, and a parser that never overrides human judgment.</p>
+      <div class="two">
+        <div>
+          <div class="card-kicker anim d3" style="margin-bottom:8px;">Governance roles</div>
+          <div class="role anim d3"><span class="card-title" style="font-size:16px;">Owner</span><div class="card-body">Approves and activates. Typically CIO or IC chair.</div></div>
+          <div class="role anim d4"><span class="card-title" style="font-size:16px;">Reviewer</span><div class="card-body">PM or research lead validates each tilt against the report.</div></div>
+          <div class="role anim d5"><span class="card-title" style="font-size:16px;">Compliance</span><div class="card-body">Verifies auditability; runs configured exports for committee or regulatory use.</div></div>
+          <div class="role anim d6"><span class="card-title" style="font-size:16px;">Ops / Admin</span><div class="card-body">Controls publishing scope and rollback, where configured.</div></div>
+        </div>
+        <div>
+          <div class="card-kicker anim d4" style="margin-bottom:12px;">Known limits &amp; human override</div>
+          <div class="limbox panel lift anim d4" style="border-color:var(--gold-hair);">
+            <div class="bullet"><span class="card-body">Narrative compression can miss nuance; every extraction is surfaced for review.</span></div>
+            <div class="bullet"><span class="card-body">Conflicting statements require owner judgment, not parser arbitration.</span></div>
+            <div class="bullet"><span class="card-body">Parser suggestions remain draft-level until the owner approves.</span></div>
+            <div class="bullet"><span class="card-body">Any activation can be superseded by a newer approved version.</span></div>
+            <div class="bullet"><span class="card-body">Where configured, rollback to a prior approved version is supported and logged.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ex-foot"><span class="live">Parser never overrides human judgment</span><span class="pageno">08 / 11</span></div>
+    </div>
+  </section>
+
+  <!-- 09 · ADOPTION & PROOF -->
+  <section class="exhibit" data-tab="Adoption" data-desc="What changes once it's running">
+    <div class="ex-inner">
+      <div class="eyebrow anim">Adoption</div>
+      <h1 class="headline anim d1">What changes <em>once it's running.</em></h1>
+      <p class="lead anim d2">Measured against your current baseline, and a holistic view your asset-allocation lens can't give alone.</p>
+      <div class="metrics4">
+        <div class="metric panel anim d3"><div class="mv">3 hrs</div><div class="mt">Cycle time: report received &rarr; activated structured view</div></div>
+        <div class="metric panel anim d4"><div class="mv">82%</div><div class="mt">Acceptance: recommended names accepted without edits</div></div>
+        <div class="metric panel anim d5"><div class="mv pos">&minus;74%</div><div class="mt">Audit-prep hours: time saved vs. prior manual process</div></div>
+        <div class="metric panel anim d6"><div class="mv">1 cycle</div><div class="mt">IC turnaround: committee turnaround on view changes</div></div>
+      </div>
+      <div class="band anim d7" style="margin-top:24px; align-items:center;">
+        <div style="flex:1;">
+          <span class="bk">Who this serves</span>
+          <span class="bt" style="display:block; margin-top:6px;">Firms building systematic or AI-driven strategies without comprehensive in-house equity research. Your CIO defines direction; Parallax fills the implementation gap between top-down view and holdings on the ground.</span>
+        </div>
+        <div style="text-align:right; flex:none; padding-left:24px; border-left:1px solid var(--gold-hair);">
+          <div class="stat pos" style="font-size:clamp(38px,4vw,54px);">+13.8%</div>
+          <div class="stat-label" style="margin-top:4px;">sample alpha vs ACWI</div>
+        </div>
+      </div>
+      <div class="ex-foot"><span class="flag">Illustrative sample metrics</span><span class="pageno">09 / 11</span></div>
+    </div>
+  </section>
+
+  <!-- 10 · CLOSING -->
+  <section class="exhibit" data-tab="Why Chicago Global" data-desc="Direction stays yours. Implementation gets sharper.">
+    <div class="ex-inner">
+      <div class="eyebrow anim">Why partner with Chicago Global</div>
+      <h1 class="headline anim d1">Direction stays yours. <em>Implementation gets sharper.</em></h1>
+      <div class="reasons">
+        <div class="card panel anim d3"><span class="ico" data-ic="git-compare" data-sz="28"></span><div><span class="card-title" style="font-size:17px;">Complement, not compete</span><div class="card-body" style="margin-top:4px;">We never generate, replace, or override your house view.</div></div></div>
+        <div class="card panel anim d4"><span class="ico" data-ic="award" data-sz="28"></span><div><span class="card-title" style="font-size:17px;">Institutional pedigree</span><div class="card-body" style="margin-top:4px;">50 years of research foundation; 32 Nobel prizes in economics at the University of Chicago.</div></div></div>
+        <div class="card panel anim d5"><span class="ico" data-ic="shield-check" data-sz="28"></span><div><span class="card-title" style="font-size:17px;">Defensible by design</span><div class="card-body" style="margin-top:4px;">Versioned, source-linked, owner-approved. Same input &rarr; same output.</div></div></div>
+        <div class="card panel anim d6"><span class="ico" data-ic="lock" data-sz="28"></span><div><span class="card-title" style="font-size:17px;">Authority preserved</span><div class="card-body" style="margin-top:4px;">Your named owner approves every activation; full audit trail throughout.</div></div></div>
+      </div>
+      <div class="cta anim d7"><span class="go">Bring this to your Investment Committee.</span><span class="url">www.chicago.global</span></div>
+      <div class="ex-foot"><span class="live">Chicago Global Pte Ltd · MAS CMS101590 · Shared for discussion · past performance is not indicative of future results</span><span class="pageno">10 / 11</span></div>
+    </div>
+  </section>
+
+  <!-- 11 · THANK YOU -->
+  <section class="exhibit center-v" data-tab="Thank you" data-desc="Bring your house view to the table">
+    <div class="ex-inner" style="text-align:center;">
+      <div class="eyebrow anim" style="justify-content:center;">In partnership with Parallax</div>
+      <h1 class="headline anim d1" style="font-size:clamp(56px,8vw,108px); margin-top:16px;">Thank you.</h1>
+      <p class="lead anim d3" style="font-size:clamp(16px,1.5vw,20px); margin:20px auto 0; max-width:62ch;">Bring your house view to the table. We'll handle the implementation, following your approval.</p>
+      <div class="meta-mono anim d5" style="margin-top:46px;">www.chicago.global &nbsp;·&nbsp; MAS CMS101590</div>
+    </div>
+  </section>
+
+</div>
+
+</div><!-- /#app -->
+
+<!-- ===================================================== GRID OVERVIEW -->
+<div id="menu">
+  <button class="menu-close" data-act="closegrid">CLOSE &#10005;</button>
+  <svg class="pmk" viewBox="0 0 150 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="mkL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c9a55f" stop-opacity="0"/><stop offset="1" stop-color="#e9d8b0"/></linearGradient>
+      <linearGradient id="mkR" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#c9a55f" stop-opacity="0"/><stop offset="1" stop-color="#e9d8b0"/></linearGradient>
+    </defs>
+    <g class="vl"><path d="M75 32 L18 8 L18 56 Z" fill="url(#mkL)"/></g>
+    <g class="vr"><path d="M75 32 L132 8 L132 56 Z" fill="url(#mkR)"/></g>
+    <circle class="spk" cx="75" cy="32" r="5" fill="#f1ebdd"/>
+    <circle cx="75" cy="32" r="2.4" fill="#fff"/>
+  </svg>
+  <h1 class="menu-h1">Chicago Global &times; Parallax</h1>
+  <div class="menu-lede">In partnership · Polaris exhibit suite · click to open · ←/→ to move</div>
+  <div class="menu-cards" id="menuCards"></div>
+</div>
+
+<script src="../assets/icons-data.js"></script>
+<script src="suite.js"></script>
+
+<!-- Tweaks panel (React) -->
+<div id="tweak-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="suite-tweaks.jsx"></script>
+</body>
+</html>

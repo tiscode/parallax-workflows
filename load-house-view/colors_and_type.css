@@ -1,0 +1,200 @@
+/* =============================================================================
+   Chicago Global / Parallax — Color & Type Tokens   (CANONICAL)
+   -----------------------------------------------------------------------------
+   Source of truth: brand-guidelines.md (v1.2, May 2026). Where this file and the
+   brand guide disagree, the brand guide wins — update this file to match.
+
+   Brand model: ONE palette, ONE type system, shared by Chicago Global (firm) and
+   Parallax (product). Light vs dark is a MEDIUM rule, not a brand rule:
+     • Light  = default. Long-form, print-adjacent, marketing, mixed audiences.
+     • Dark   = deliberate, for data-dense screens (Parallax console/dashboard),
+                title/cover slides, and special-edition newsletters.
+   "When in doubt, light."  Composition follows 60-30-10: 60% neutrals,
+   30% navy, 10% orange + semantic combined.
+
+   FONTS: brand fonts are Futura / Gill Sans / Optima (+ NorPath wordmark, custom).
+   None are on Google Fonts. We keep the real names first in each stack (so local/
+   licensed installs win) and load close Google substitutes — see fonts.css.
+     Futura     → Jost            (geometric grotesque, near-Futura)
+     Gill Sans  → Cabin           (humanist sans in the Johnston/Gill lineage)
+     Optima     → Carlito         (Calibri-metric clone; brand's own Optima fallback
+                                    chain is Candara/Calibri — tabular figures)
+     Instrument Serif             (newsletter "The Brief" display only — real font)
+   NorPath (Parallax wordmark) is custom & unavailable; flagged. Do not fake it.
+   ============================================================================= */
+
+:root {
+  /* ---- PRIMARY PALETTE --------------------------------------------------- */
+  --navy:          #0C2746;  /* Primary Navy — brand anchor, headers, dark bg */
+  --blue-2:        #154175;  /* Secondary Blue — italic emphasis, dividers */
+  --blue-accent:   #547498;  /* Accent Blue — links, borders, icon fills */
+  --blue-light:    #92A6C1;  /* Light Blue — decorative fills, tag backgrounds */
+  --orange:        #ED7D31;  /* CTA Orange — primary CTA ONLY. Max 10% of a page */
+  --ink:           #1F2937;  /* Body Text — default. NEVER pure black */
+  --white:         #FFFFFF;
+
+  /* A navy tint ramp for surfaces/borders that read as "navy family" */
+  --navy-700:      #154175;
+  --navy-600:      #285FA0;  /* dark-mode card border */
+  --navy-500:      #547498;
+  --navy-300:      #92A6C1;
+
+  /* ---- SEMANTIC (always paired with text/icon — never color alone) ------- */
+  --success:       #15803D;  /* positive figures, BUY */
+  --error:         #B91C1C;  /* losses, SELL, error states */
+  --warning:       #B45309;  /* caution / HOLD */
+  --alert:         #E3140F;  /* critical system urgency only */
+  --success-bg:    #ECF5EF;
+  --error-bg:      #F9EDED;
+  --warning-bg:    #F9F1EB;
+  --alert-bg:      #F4DDDD;
+  --neutral-bg:    #F5F6F8;  /* neutral badge bg */
+  --neutral-fg:    #4B5563;
+
+  /* ---- CHART — categorical (brightness-matched) -------------------------- */
+  --chart-1: #2563EB;  /* Portfolio / primary series */
+  --chart-2: #ED7D31;  /* Benchmark / secondary */
+  --chart-3: #15803D;  /* positive (= success) */
+  --chart-4: #B91C1C;  /* negative (= error) */
+  --chart-5: #7C3AED;  /* purple */
+  --chart-6: #0E7490;  /* teal */
+  --chart-7: #B45309;  /* amber (= warning) */
+
+  /* ---- PAGE BACKGROUNDS (light surfaces) --------------------------------- */
+  --bg-white:     #FFFFFF;   /* web, slides, default */
+  --bg-cream:     #F5F2EB;   /* brochures, print-adjacent (warm) */
+  --bg-offwhite:  #F5F6F8;   /* newsletters, digital (cool) */
+
+  /* ---- NEUTRAL UI greys (from component specs) --------------------------- */
+  --border:       #CCCDCF;   /* 1px borders on inputs, tables, cards */
+  --row-stripe:   #EAEDF3;   /* even table rows (blue-tinted) */
+  --row-alt:      #EAEDF3;
+  --label-grey:   #6B7280;   /* input labels */
+  /* NOTE: #9EA0A9 mid-grey FAILS AA for body text — do not use for text. */
+
+  /* =========================================================================
+     SEMANTIC TOKENS — LIGHT THEME (default)
+     ========================================================================= */
+  --surface-0: var(--bg-white);   /* page ground */
+  --surface-1: var(--bg-offwhite);/* subtle raised / nav */
+  --surface-2: var(--white);      /* card */
+  --hairline:  var(--border);
+  --fg-1: var(--ink);             /* body text */
+  --fg-head: var(--navy);         /* all headings = navy */
+  --fg-2: var(--blue-accent);     /* secondary / captions / eyebrows */
+  --link: var(--blue-accent);
+  --cta:  var(--orange);
+
+  /* ---- TYPE FAMILIES ----------------------------------------------------- */
+  --font-head:    "Futura", "Jost", "ITC Avant Garde Gothic", "Century Gothic", sans-serif;
+  --font-body:    "Gill Sans", "Gill Sans MT", "Cabin", Calibri, sans-serif;
+  --font-num:     "Optima", "Cabin", Candara, Calibri, sans-serif; /* tabular numerals */
+  --font-wordmark:"NorPath", "Futura", "Jost", sans-serif;         /* Parallax wordmark — custom, flagged */
+  --font-editorial:"Instrument Serif", Georgia, "Times New Roman", serif; /* The Brief only */
+
+  /* ---- TYPE SCALE (pt-anchored per brand hierarchy; rem for web) --------- */
+  --h1: 2.5rem;    /* 40 (32–40) Futura Bold, navy */
+  --h2: 1.75rem;   /* 28 (24–28) Futura Bold, navy */
+  --h3: 1.25rem;   /* 20 (18–20) Futura Bold, navy */
+  --eyebrow: 0.75rem; /* 12 Futura Bold uppercase tracked, accent blue */
+  --body: 1rem;    /* ~11pt body; web uses 16 base */
+  --caption: 0.8125rem; /* 9pt caption, accent blue */
+  --num: 0.95rem;  /* Optima tabular 14pt+ */
+
+  --leading-tight: 1.12;
+  --leading-snug:  1.3;
+  --leading-body:  1.6;
+
+  --track-eyebrow: 0.1em;   /* tracked uppercase */
+  --track-head:   -0.01em;
+  --weight-reg: 400;
+  --weight-bold: 700;
+
+  /* ---- SPACING — 4px base. Scale: 4 8 12 16 20 24 32 40 48 64 80 96 128 -- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 20px;
+  --s-6: 24px; --s-7: 32px; --s-8: 40px; --s-9: 48px; --s-10: 64px;
+  --s-11: 80px; --s-12: 96px; --s-13: 128px;
+  --gap-component: 16px;   /* component gaps */
+  --pad-section:   32px;   /* section padding */
+  --gap-major:     80px;   /* 64–96 major sections */
+
+  /* ---- BORDER RADIUS ----------------------------------------------------- */
+  --r-micro: 2px;   /* badges, tags */
+  --r-std:   4px;   /* status badges, pills */
+  --r-comfy: 6px;   /* buttons, inputs */
+  --r-card:  8px;   /* cards, containers */
+  --r-panel: 12px;  /* featured cards, panels */
+  --r-full:  9999px;/* pill buttons, filter chips */
+
+  /* ---- ELEVATION — Stripe-style dual shadow, NEUTRAL (no blue tint) ------ */
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.05);                               /* table rows */
+  --shadow-2: 0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);   /* cards */
+  --shadow-3: 0 4px 6px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);   /* hover, dropdowns */
+  --shadow-4: 0 10px 15px rgba(0,0,0,0.10), 0 4px 6px rgba(0,0,0,0.05); /* modals, popovers */
+  --shadow-5: 0 20px 25px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.04);/* command palette */
+
+  /* ---- CONTAINERS -------------------------------------------------------- */
+  --max-marketing: 1200px;
+  --max-dashboard: 1440px;
+  --max-report:    800px;
+  --sidebar-w:     240px;
+}
+
+/* =============================================================================
+   DARK MODE VARIANT — for Parallax console/dashboard, dark newsletter editions,
+   and navy title/cover slides. Set data-theme="dark" or class .theme-dark.
+   ============================================================================= */
+:root[data-theme="dark"], .theme-dark {
+  --surface-0: var(--navy);        /* #0C2746 background */
+  --surface-1: #0a2039;
+  --surface-2: var(--blue-2);      /* #154175 cards */
+  --hairline:  var(--navy-600);    /* #285FA0 card border */
+  --fg-1: var(--white);            /* body text */
+  --fg-head: var(--white);
+  --fg-2: var(--blue-accent);      /* #547498 secondary */
+  --link: var(--blue-light);       /* #92A6C1, underlined */
+  --cta:  var(--orange);           /* unchanged */
+}
+
+/* =============================================================================
+   SEMANTIC ELEMENT STYLES
+   ============================================================================= */
+.cg-eyebrow {
+  font-family: var(--font-head);
+  font-size: var(--eyebrow);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+h1, .h1 { font-family: var(--font-head); font-weight: var(--weight-bold); font-size: var(--h1);
+  line-height: var(--leading-tight); letter-spacing: var(--track-head); color: var(--fg-head);
+  text-wrap: balance; margin: 0; }
+h2, .h2 { font-family: var(--font-head); font-weight: var(--weight-bold); font-size: var(--h2);
+  line-height: var(--leading-snug); color: var(--fg-head); text-wrap: balance; margin: 0; }
+h3, .h3 { font-family: var(--font-head); font-weight: var(--weight-bold); font-size: var(--h3);
+  line-height: var(--leading-snug); color: var(--fg-head); margin: 0; }
+p, .body { font-family: var(--font-body); font-size: var(--body); line-height: var(--leading-body);
+  color: var(--fg-1); text-wrap: pretty; }
+.caption { font-family: var(--font-body); font-size: var(--caption); color: var(--fg-2); }
+.num, .ticker, .tabular { font-family: var(--font-num); font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0; }
+.wordmark { font-family: var(--font-wordmark); letter-spacing: 0.02em; font-weight: var(--weight-bold); }
+.editorial { font-family: var(--font-editorial); }
+
+a, .link { color: var(--link); text-decoration: none; }
+a:hover, .link:hover { text-decoration: underline; }
+:root[data-theme="dark"] a, .theme-dark a { text-decoration: underline; } /* dark links underlined */
+
+.num-pos { color: var(--success); font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+.num-neg { color: var(--error);   font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+
+/* CTA button — orange, sparingly (max 1–2 per page) */
+.btn-cta { font-family: var(--font-body); font-weight: 600; background: var(--cta); color: #fff;
+  border: 0; border-radius: var(--r-comfy); padding: 10px 18px; cursor: pointer; }
+.btn-cta:hover { filter: brightness(0.95); }
+/* Secondary button — navy outline */
+.btn-secondary { font-family: var(--font-body); font-weight: 600; background: transparent;
+  color: var(--navy); border: 1px solid var(--navy); border-radius: var(--r-comfy);
+  padding: 10px 18px; cursor: pointer; }
+:root[data-theme="dark"] .btn-secondary, .theme-dark .btn-secondary { color: #fff; border-color: var(--navy-600); }
