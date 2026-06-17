@@ -147,3 +147,22 @@ table.rt td.lab { font-family: var(--font-body); color: var(--w-2); font-size: 1
 /* print / reduced-motion: bars stay filled */
 @media (prefers-reduced-motion: reduce) { .bar > i { transform: scaleX(1) !important; } }
 @media print { .bar > i { transform: scaleX(1) !important; } }
+
+/* =============================================================================
+   Slide 09 · before / after comparison (shared by both decks)
+   Three reading columns: dimension | today | in partnership, with a cyan
+   connector arrow. Each cell carries .anim dN so rows rise in sequence.
+   ============================================================================= */
+.ba { display: grid; grid-template-columns: 152px 1fr 34px 1fr; column-gap: 24px; margin-top: 42px; }
+.ba > * { align-self: center; }
+.ba .ba-h { font-family: var(--font-display); font-weight: 600; font-size: 12.5px;
+  letter-spacing: .06em; text-transform: uppercase; padding-bottom: 13px; }
+.ba .ba-h.b { color: var(--w-3); }
+.ba .ba-h.a { color: var(--cy); }
+.ba .cell { padding: 13px 0; border-top: 1px solid var(--line); }
+.ba .ba-dim { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--w); }
+.ba .ba-b { font-family: var(--font-body); font-size: 14px; line-height: 1.42; color: var(--w-3); }
+.ba .ba-a { font-family: var(--font-body); font-size: 14px; line-height: 1.42; color: var(--w-2); }
+.ba .ba-a b { color: var(--cy-pale); font-weight: 600; }
+.ba .ba-a i { color: var(--w); font-style: italic; }
+.ba .ba-ar { color: var(--cy); text-align: center; font-size: 15px; }
